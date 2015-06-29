@@ -30,6 +30,7 @@ public class Tester {
 
 	@BeforeClass
 	public static void pre() {
+		// ssss
 		everyThing = judge.loadMap(cellsType, wallsType, players);
 		playersAL = judge.getp();
 	}
