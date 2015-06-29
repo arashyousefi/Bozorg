@@ -148,6 +148,6 @@ public class Player extends Person {
 		this.info.put(Constants.POWER, Constants.PLAYER_INFO[name][3]);
 		this.info.put(Constants.HEALTH, 100);
 		this.info.put(Constants.IS_WINNER, Constants.NOT_FINISHED);
+		this.info.put(Constants.NAME, name);
 	}
-
 }
