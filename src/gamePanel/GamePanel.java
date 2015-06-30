@@ -42,7 +42,7 @@ public class GamePanel extends JFrame {
 	}
 
 	private void initStatusPanel() {
-		statPanel = new StatusPanel((int) (width * RATIO), height);
+		statPanel = new StatusPanel(height);
 		getContentPane().add(statPanel, BorderLayout.LINE_START);
 	}
 
