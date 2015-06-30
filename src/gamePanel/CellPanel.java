@@ -14,7 +14,6 @@ import bozorg.common.objects.Constants;
 import bozorg.common.objects.Fan;
 import bozorg.common.objects.Person;
 import bozorg.common.objects.Player;
-import bozorg.judge.Judge;
 
 @SuppressWarnings("serial")
 public class CellPanel extends JPanel {

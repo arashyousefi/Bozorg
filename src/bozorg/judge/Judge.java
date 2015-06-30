@@ -160,6 +160,10 @@ public class Judge extends JudgeAbstract {
 		// XXX
 	}
 
+	public Block getBlock(int row, int col) {
+		return world.getBlock(row, col);
+	}
+
 	public static void main(String[] args) {
 		Judge judge = new Judge();
 		int[][] wallsType = { { 9, 13, 5, 3 }, { 8, 3, 9, 6 },

@@ -13,13 +13,12 @@ public class NameLabel extends JLabel {
 	private Player player;
 	private String[] names;
 
-	public NameLabel(Player player) {
-		this.player = player;
+	public NameLabel() {
 		initNames();
-		setSize(150, 20);
+		setBounds(25, 110, 150, 20);
 		setHorizontalAlignment(CENTER);
 		setFont(new Font(this.getName(), Font.PLAIN, 30));
-		setForeground(Color.white);
+		setForeground(Color.BLACK);
 	}
 
 	private void initNames() {
@@ -32,7 +31,8 @@ public class NameLabel extends JLabel {
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
-		setText(names[player.getName()]);
+		if (player != null)
+			setText(names[player.getName()]);
 		super.paintComponent(arg0);
 	}
 

@@ -54,7 +54,7 @@ public class GamePanel extends JFrame {
 		cells = new CellPanel[engine.getMapWidth()][engine.getMapHeight()];
 		for (int i = 0; i < engine.getMapWidth(); ++i)
 			for (int j = 0; j < engine.getMapHeight(); ++j) {
-				cells[i][j] = new CellPanel(engine, i, j);
+				cells[i][j] = new CellPanel(engine.getBlock(i, j));
 				mapPanel.add(cells[i][j]);
 			}
 	}

@@ -14,9 +14,14 @@ public class ImagePanel extends JPanel {
 	private Player player;
 	private BufferedImage[] images = new BufferedImage[4];
 
-	public ImagePanel(Player player) {
-		this.player = player;
+	public ImagePanel() {
+
+		setBounds(25, 25, 150, 85);
 		initBufferedImages();
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	private void initBufferedImages() {
@@ -34,6 +39,5 @@ public class ImagePanel extends JPanel {
 	protected void paintComponent(Graphics arg0) {
 		if (player != null)
 			arg0.drawImage(images[player.getName()], 0, 0, this);
-		super.paintComponent(arg0);
 	}
 }
