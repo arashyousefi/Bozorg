@@ -164,6 +164,10 @@ public class Judge extends JudgeAbstract {
 		return world.getBlock(row, col);
 	}
 
+	public ArrayList<Player> getPlayersInGame() {
+		return world.getp();
+	}
+
 	public static void main(String[] args) {
 		Judge judge = new Judge();
 		int[][] wallsType = { { 9, 13, 5, 3 }, { 8, 3, 9, 6 },

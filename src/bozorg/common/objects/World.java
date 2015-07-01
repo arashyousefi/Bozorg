@@ -133,6 +133,7 @@ public class World {
 
 	}
 
+	// returns all players
 	public ArrayList<Player> getp() {
 		return players;
 	}
