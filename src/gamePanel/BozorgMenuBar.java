@@ -1,5 +1,7 @@
 package gamePanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -14,7 +16,7 @@ import bozorg.judge.Judge;
 public class BozorgMenuBar extends JMenuBar {
 
 	@SuppressWarnings("deprecation")
-	public BozorgMenuBar(Judge judge) {
+	public BozorgMenuBar(Judge judge, GamePanel panel) {
 		JMenu fileMenu = new JMenu("File");
 		JMenu viewMenu = new JMenu("View");
 		ButtonGroup camera = new ButtonGroup();
@@ -28,8 +30,28 @@ public class BozorgMenuBar extends JMenuBar {
 		ArrayList<Player> players = judge.getp();
 		for (JRadioButtonMenuItem jRadioButtonMenuItem : allPlayers)
 			jRadioButtonMenuItem.hide();
-		for (Player player : players)
+		observer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				panel.setPlayer(null);
+				panel.repaint();
+
+			}
+		});
+		for (Player player : players) {
+			allPlayers[player.getName()]
+					.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							panel.setPlayer(player);
+							panel.repaint();
+						}
+					});
 			allPlayers[player.getName()].show();
+
+		}
 
 		observer.setSelected(true);
 		camera.add(observer);

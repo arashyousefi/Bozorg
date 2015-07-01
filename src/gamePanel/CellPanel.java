@@ -25,6 +25,7 @@ public class CellPanel extends JPanel {
 
 	private Block block;
 	private int wallType;
+	private Player player;
 
 	public CellPanel(Block block) {
 		this.setPreferredSize(new Dimension(30, 30));
@@ -46,14 +47,19 @@ public class CellPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
 		paintPlayers(g);
+		player = MapPanel.getPlayer();
+		if (!block.isSeenBy(player)) {
+			g.setColor(Color.black);
+			g.fillRect(0, 0, getWidth(), getHeight());
+			return;
+		}
 		paintFans(g);
-		if (block.getCellType() == Constants.BONUS_CELL) {
+		if (block.getCellType(player) == Constants.BONUS_CELL) {
 			g.setColor(Color.pink);
 			g.fillRect(0, 15, 30, 7);
 		}
-		if (block.getCellType() == Constants.JJ_CELL) {
+		if (block.getCellType(player) == Constants.JJ_CELL) {
 			g.setColor(Color.magenta);
 			g.fillRect(0, 23, 30, 7);
 		}
@@ -83,35 +89,4 @@ public class CellPanel extends JPanel {
 
 	}
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);
-		frame.setLayout(new GridLayout(2, 2));
-		Block b1 = new Block(0, 0, Constants.BONUS_CELL, 11);
-		Block b2 = new Block(0, 1, Constants.JJ_CELL, 11);
-		Block b3 = new Block(1, 0, Constants.NONE_CELL, 12);
-		Block b4 = new Block(1, 1, Constants.BONUS_CELL, 6);
-		CellPanel c1 = new CellPanel(b1);
-		CellPanel c2 = new CellPanel(b2);
-		CellPanel c3 = new CellPanel(b3);
-		CellPanel c4 = new CellPanel(b4);
-		Player reza = new Player(Constants.REZA, b1);
-		Player saman = new Player(Constants.SAMAN, b1);
-		Player jafar = new Player(Constants.JAFAR, b1);
-		Player hasin = new Player(Constants.HASIN, b1);
-		b1.addPerson(reza);
-		b1.addPerson(new Fan(reza));
-		b1.addPerson(new Fan(hasin));
-		b2.addPerson(saman);
-		b2.addPerson(new Fan(jafar));
-		b3.addPerson(jafar);
-		b4.addPerson(new Fan(saman));
-		frame.add(c1);
-		frame.add(c2);
-		frame.add(c3);
-		frame.add(c4);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
 }

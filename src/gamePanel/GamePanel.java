@@ -65,5 +65,6 @@ public class GamePanel extends JFrame {
 
 	public void setPlayer(Player p) {
 		statPanel.setPlayer(p);
+		MapPanel.setPlayer(p);
 	}
 }
