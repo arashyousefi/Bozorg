@@ -3,7 +3,6 @@ package gamePanel;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JRadioButtonMenuItem;
@@ -12,10 +11,10 @@ import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
 @SuppressWarnings("serial")
-public class BozorgMenu extends JMenuBar {
+public class BozorgMenuBar extends JMenuBar {
 
 	@SuppressWarnings("deprecation")
-	public BozorgMenu(Judge judge) {
+	public BozorgMenuBar(Judge judge) {
 		JMenu fileMenu = new JMenu("File");
 		JMenu viewMenu = new JMenu("View");
 		ButtonGroup camera = new ButtonGroup();
