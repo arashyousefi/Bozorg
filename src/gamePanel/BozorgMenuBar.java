@@ -21,15 +21,15 @@ public class BozorgMenuBar extends JMenuBar {
 		JRadioButtonMenuItem observer = new JRadioButtonMenuItem("Observer");
 		JRadioButtonMenuItem saman = new JRadioButtonMenuItem("Saman");
 		JRadioButtonMenuItem jafar = new JRadioButtonMenuItem("Jafar");
-		JRadioButtonMenuItem reza = new JRadioButtonMenuItem("Rezar");
+		JRadioButtonMenuItem reza = new JRadioButtonMenuItem("Reza");
 		JRadioButtonMenuItem hasin = new JRadioButtonMenuItem("Hasin");
 		JRadioButtonMenuItem[] allPlayers = { saman, jafar, reza, hasin };
 
 		ArrayList<Player> players = judge.getp();
 		for (JRadioButtonMenuItem jRadioButtonMenuItem : allPlayers)
-			jRadioButtonMenuItem.disable();
+			jRadioButtonMenuItem.hide();
 		for (Player player : players)
-			allPlayers[player.getName()].enable();
+			allPlayers[player.getName()].show();
 
 		observer.setSelected(true);
 		camera.add(observer);
