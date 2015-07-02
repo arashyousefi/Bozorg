@@ -24,7 +24,7 @@ public class StatusPanel extends JPanel {
 	public StatusPanel(int height) {
 		this.height = height;
 		setLayout(null);
-		setSize(new Dimension(WIDTH, height));
+		setPreferredSize(new Dimension(WIDTH, height));
 		initImage();
 		initName();
 		initPowerUps();

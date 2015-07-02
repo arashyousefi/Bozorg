@@ -1,9 +1,11 @@
 package gamePanel;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
+import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
 @SuppressWarnings("serial")
@@ -13,12 +15,14 @@ public class GamePanel extends JFrame {
 	private StatusPanel statPanel;
 	private int width, height;
 	private CellPanel[][] cells;
-	public static final double RATIO = 0.2;
-	public static final int CELL_SIZE = 5;
+	public static final int CELL_SIZE = 30;
+	public static final int STATUS_WIDTH = 200;
 
 	public GamePanel() {
-		this.setVisible(true);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
+		setResizable(false);
 	}
 
 	public void init(Judge engine) {
@@ -30,8 +34,8 @@ public class GamePanel extends JFrame {
 	}
 
 	private void setSize() {
-		width = (int) (engine.getMapWidth() * 5 * (1 / (1 - RATIO)));
-		height = engine.getMapHeight() * 5;
+		width = engine.getMapWidth() * CELL_SIZE + STATUS_WIDTH;
+		height = engine.getMapHeight() * CELL_SIZE;
 		setSize(width, height);
 
 	}
@@ -57,5 +61,9 @@ public class GamePanel extends JFrame {
 				cells[i][j] = new CellPanel(engine.getBlock(i, j));
 				mapPanel.add(cells[i][j]);
 			}
+	}
+
+	public void setPlayer(Player p) {
+		statPanel.setPlayer(p);
 	}
 }
