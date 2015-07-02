@@ -33,6 +33,8 @@ public class NameLabel extends JLabel {
 	protected void paintComponent(Graphics arg0) {
 		if (player != null)
 			setText(names[player.getName()]);
+		else
+			setText("");
 		super.paintComponent(arg0);
 	}
 
