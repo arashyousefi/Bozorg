@@ -4,7 +4,10 @@ import gameController.GameController;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import bozorg.common.objects.Player;
@@ -21,6 +24,13 @@ public class GamePanel extends JFrame {
 	public static final int STATUS_WIDTH = 200;
 
 	public GamePanel() {
+		try {
+			setIconImage(ImageIO.read(new File("resources/icon.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
