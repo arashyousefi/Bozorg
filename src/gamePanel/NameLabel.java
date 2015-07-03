@@ -15,7 +15,7 @@ public class NameLabel extends JLabel {
 
 	public NameLabel() {
 		initNames();
-		setBounds(25, 110, 150, 20);
+		setBounds(25, 110, 150, 30);
 		setHorizontalAlignment(CENTER);
 		setFont(new Font(this.getName(), Font.PLAIN, 30));
 		setForeground(Color.BLACK);

@@ -11,14 +11,25 @@ import bozorg.common.objects.Player;
 
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel {
-	private Player player;
 	private static final int WIDTH = 200;
 	private int height;
 	private NameLabel nameLabel;
 	private ImagePanel imagePanel;
+	private PowerPanel power;
+	private HealthPanel health;
+	private SpeedPanel speed;
 
-	public void setPlayer(Player p) {
-		player = p;
+	public void setPlayer(Player player) {
+		PowerUpPanel.setPlayer(player);
+		nameLabel.setPlayer(player);
+		imagePanel.setPlayer(player);
+		power.setPlayer(player);
+		speed.setPlayer(player);
+		health.setPlayer(player);
+		if (player == null)
+			setVisible(false);
+		else
+			setVisible(true);
 	}
 
 	public StatusPanel(int height) {
@@ -27,22 +38,34 @@ public class StatusPanel extends JPanel {
 		setPreferredSize(new Dimension(WIDTH, height));
 		initImage();
 		initName();
+		initStats();
 		initPowerUps();
 		setVisible(true);
+	}
+
+	private void initStats() {
+		health = new HealthPanel();
+		health.setBounds(0, 140, 50, 50);
+		speed = new SpeedPanel();
+		speed.setBounds(50, 140, 50, 50);
+		power = new PowerPanel();
+		power.setBounds(100, 140, 100, 150);
+		add(health);
+		add(speed);
+		add(power);
+
 	}
 
 	private void initImage() {
 		imagePanel = new ImagePanel();
 		add(imagePanel);
 		imagePanel.setVisible(true);
-		imagePanel.setPlayer(player);
 	}
 
 	private void initName() {
 		nameLabel = new NameLabel();
 		add(nameLabel);
 		nameLabel.setVisible(true);
-		nameLabel.setPlayer(player);
 	}
 
 	private void initPowerUps() {
@@ -50,29 +73,17 @@ public class StatusPanel extends JPanel {
 		PowerUpPanel phase = new PowerUpPanel(Constants.PHASE);
 		PowerUpPanel haste = new PowerUpPanel(Constants.HASTE);
 		PowerUpPanel stun = new PowerUpPanel(Constants.STUNNED);
-		sight.setLocation(25, 150);
-		phase.setLocation(25, 200);
-		haste.setLocation(25, 250);
-		stun.setLocation(25, 300);
 		add(stun);
 		add(haste);
 		add(phase);
 		add(sight);
 
-		PowerUpPanel.setPlayer(player);
 	}
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		arg0.setColor(Color.WHITE);
 		arg0.fillRect(0, 0, WIDTH, height);
-		updatePlayers();
-		super.paintComponent(arg0);
 	}
 
-	private void updatePlayers() {
-		PowerUpPanel.setPlayer(player);
-		nameLabel.setPlayer(player);
-		imagePanel.setPlayer(player);
-	}
 }

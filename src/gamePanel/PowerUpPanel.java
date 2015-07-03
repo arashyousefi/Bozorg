@@ -1,6 +1,5 @@
 package gamePanel;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,7 +18,7 @@ public class PowerUpPanel extends JPanel {
 	public PowerUpPanel(int type) {
 		initPowerUps();
 		this.type = type;
-		setPreferredSize(new Dimension(50, 50));
+		setBounds(type * 50, 200, 50, 50);
 	}
 
 	private static void initPowerUps() {
@@ -41,7 +40,6 @@ public class PowerUpPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
-
 		if (player != null)
 			arg0.drawImage(pws[type], 0, 0, this);
 		if (player != null)
