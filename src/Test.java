@@ -17,7 +17,7 @@ public class Test {
 		Judge judge = new Judge();
 		GamePanel panel = new GamePanel();
 		judge.loadMap(cellTypes, wallTypes, players);
-		panel.init(judge);
+		panel.init(judge, null);
 		panel.setJMenuBar(new BozorgMenuBar(judge, panel));
 		panel.pack();
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

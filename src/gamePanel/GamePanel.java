@@ -1,5 +1,7 @@
 package gamePanel;
 
+import gameController.GameController;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -25,7 +27,8 @@ public class GamePanel extends JFrame {
 		setResizable(false);
 	}
 
-	public void init(Judge engine) {
+	public void init(Judge engine, GameController controller) {
+		// TODO
 		this.engine = engine;
 		setSize();
 		initStatusPanel();
