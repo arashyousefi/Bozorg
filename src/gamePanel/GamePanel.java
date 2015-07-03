@@ -58,9 +58,9 @@ public class GamePanel extends JFrame {
 	}
 
 	private void initCells() {
-		cells = new CellPanel[engine.getMapWidth()][engine.getMapHeight()];
-		for (int i = 0; i < engine.getMapWidth(); ++i)
-			for (int j = 0; j < engine.getMapHeight(); ++j) {
+		cells = new CellPanel[engine.getMapHeight()][engine.getMapWidth()];
+		for (int i = 0; i < engine.getMapHeight(); ++i)
+			for (int j = 0; j < engine.getMapWidth(); ++j) {
 				cells[i][j] = new CellPanel(engine.getBlock(i, j));
 				mapPanel.add(cells[i][j]);
 			}
