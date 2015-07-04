@@ -43,7 +43,11 @@ public class MoveEvent extends Event {
 
 	@Override
 	public boolean isValid() {
+		if (World.gameEnded())
+			return false;
 		Block block = player.getBlock();
+		if (!block.getPos().move(dir).isValid())
+			return false;
 		if (!(((1 << dir) & (block.getWallType())) == 0)
 				&& !player.hasPowerUp(Constants.PHASE))
 			return false;

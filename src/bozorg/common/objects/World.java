@@ -6,6 +6,7 @@ import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.gameEvents.AbsorbEvent;
 import bozorg.common.objects.gameEvents.AttackEvent;
+import bozorg.common.objects.gameEvents.JJFlipEvent;
 import bozorg.common.objects.gameEvents.MoveEvent;
 import bozorg.common.objects.gameEvents.WardEvent;
 
@@ -17,6 +18,7 @@ public class World {
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static boolean JJVisible;
 	private static boolean gameEnded = false;
+	private static Block JJBlock;
 
 	public ArrayList<GameObjectID> newGame(int[][] cellsType,
 			int[][] wallsType, int[] playersList) {
@@ -24,15 +26,32 @@ public class World {
 
 		int k = 0;
 		for (int i = 0; i < map.getRows(); ++i)
-			for (int j = 0; j < map.getCols(); ++j)
+			for (int j = 0; j < map.getCols(); ++j) {
 				if (cellsType[i][j] == Constants.START_CELL) {
 					Player p = new Player(playersList[k++], map.at(i, j));
 					World.addPlayer(p);
 					p.setBlock(map.at(i, j));
 					map.at(i, j).addPerson(p);
 				}
+				if (cellsType[i][j] == Constants.JJ_CELL)
+					JJBlock = map.at(i, j);
+			}
+
 		JJVisible = true;
+		try {
+			EventHandler.addEvent(new JJFlipEvent(null));
+		} catch (BozorgExceptionBase e) {
+			e.printStackTrace();
+		}
 		return this.getEveryThing();
+	}
+
+	public static int getMapHeight() {
+		return map.getRows();
+	}
+
+	public static int getMapWidth() {
+		return map.getCols();
 	}
 
 	public static void win(Player player) {
@@ -116,6 +135,11 @@ public class World {
 	public void next50ms() {
 		++gameTime;
 		eh.handle();
+		if (JJVisible && JJBlock.getPlayers().size() == 1) {
+			Player winner = JJBlock.getPlayers().get(0);
+			win(winner);
+		}
+
 	}
 
 	public void movePlayer(Player p, int dir) throws BozorgExceptionBase {
@@ -144,6 +168,10 @@ public class World {
 
 	public static void flipJJ() {
 		JJVisible = !JJVisible;
+		if (JJVisible) {
+			JJBlock.setType(Constants.JJ_CELL);
+		} else
+			JJBlock.setType(Constants.NONE_CELL);
 	}
 
 	public GameObjectID[] getPlayers() {

@@ -21,8 +21,16 @@ public class Position {
 		return p1.distance(p2);
 	}
 
+	public boolean isValid() {
+		if (x < 0 || x >= World.getMapWidth())
+			return false;
+		if (y < 0 || y >= World.getMapHeight())
+			return false;
+		return true;
+	}
+
 	public int distance(Position p) {
-		return Math.max(Math.abs(p.getX() - x) , Math.abs(p.getY() - y));
+		return Math.max(Math.abs(p.getX() - x), Math.abs(p.getY() - y));
 	}
 
 	public Position move(int dir) {

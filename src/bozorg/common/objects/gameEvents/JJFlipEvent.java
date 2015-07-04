@@ -25,6 +25,7 @@ public class JJFlipEvent extends Event {
 
 	@Override
 	public boolean destroy() throws BozorgExceptionBase {
+		World.flipJJ();
 		return false;
 	}
 
