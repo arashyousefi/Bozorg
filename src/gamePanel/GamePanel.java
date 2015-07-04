@@ -44,7 +44,7 @@ public class GamePanel extends JFrame {
 	}
 
 	private void initMapPanel() {
-		mapPanel = new MapPanel(engine.getMapWidth(), engine.getMapHeight());
+		mapPanel = new MapPanel( engine.getMapHeight(),engine.getMapWidth());
 		getContentPane().add(mapPanel, BorderLayout.LINE_END);
 	}
 
