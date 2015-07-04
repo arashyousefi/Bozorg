@@ -26,10 +26,21 @@ public class StatusPanel extends JPanel {
 		power.setPlayer(player);
 		speed.setPlayer(player);
 		health.setPlayer(player);
-		if (player == null)
-			setVisible(false);
-		else
-			setVisible(true);
+		if (player == null) {
+			nameLabel.setVisible(false);
+			imagePanel.setVisible(false);
+			power.setVisible(false);
+			speed.setVisible(false);
+			health.setVisible(false);
+
+		} else {
+			nameLabel.setVisible(true);
+			imagePanel.setVisible(true);
+			power.setVisible(true);
+			speed.setVisible(true);
+			health.setVisible(true);
+
+		}
 	}
 
 	public StatusPanel(int height) {
