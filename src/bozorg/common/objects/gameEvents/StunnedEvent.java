@@ -28,7 +28,7 @@ public class StunnedEvent extends Event {
 
 	@Override
 	public void setTime() {
-		time = Constants.BONUS_INFO[Constants.STUNNED * Constants.FPS];
+		time = Constants.BONUS_INFO[Constants.STUNNED] * Constants.FPS;
 	}
 
 }

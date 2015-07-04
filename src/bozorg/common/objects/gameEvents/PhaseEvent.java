@@ -32,7 +32,7 @@ public class PhaseEvent extends Event {
 
 	@Override
 	public void setTime() {
-		time = Constants.BONUS_INFO[Constants.PHASE * Constants.FPS];
+		time = Constants.BONUS_INFO[Constants.PHASE] * Constants.FPS;
 	}
 
 }

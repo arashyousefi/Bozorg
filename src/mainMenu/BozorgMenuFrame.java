@@ -1,5 +1,13 @@
 package mainMenu;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -13,6 +21,12 @@ public class BozorgMenuFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel = new MainMenuPanel(this);
+		try {
+			this.setIconImage(ImageIO.read(new File("resources/icon.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.add(panel);
 		this.setVisible(true);
 

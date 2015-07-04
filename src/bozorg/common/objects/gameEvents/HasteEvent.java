@@ -34,7 +34,7 @@ public class HasteEvent extends Event {
 
 	@Override
 	public void setTime() {
-		time = Constants.BONUS_INFO[Constants.HASTE * Constants.FPS];
+		time = Constants.BONUS_INFO[Constants.HASTE] * Constants.FPS;
 
 	}
 

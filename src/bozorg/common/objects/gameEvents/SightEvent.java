@@ -34,7 +34,7 @@ public class SightEvent extends Event {
 
 	@Override
 	public void setTime() {
-		time = Constants.BONUS_INFO[Constants.SIGHT * Constants.FPS];
+		time = Constants.BONUS_INFO[Constants.SIGHT] * Constants.FPS;
 
 	}
 
