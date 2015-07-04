@@ -16,6 +16,7 @@ public class World {
 	private static HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
 	private static ArrayList<Player> players = new ArrayList<Player>();
 	private static boolean JJVisible;
+	private static boolean gameEnded = false;
 
 	public ArrayList<GameObjectID> newGame(int[][] cellsType,
 			int[][] wallsType, int[] playersList) {
@@ -44,7 +45,11 @@ public class World {
 			} catch (Exception e) {
 				// Nothing to do :)
 			}
-		// TODO stopTimer();
+		gameEnded = true;
+	}
+
+	public static boolean gameEnded() {
+		return gameEnded;
 	}
 
 	public static void addPerson(Person p) {

@@ -52,6 +52,8 @@ public class Block {
 	public boolean isSeenBy(Player player) {
 		if (player == null)
 			return true;
+		if (player.isDead())
+			return false;
 		if (player.hasPowerUp(Constants.SIGHT))
 			return true;
 		if (Position.distance(pos, player.getBlock().getPos()) <= player

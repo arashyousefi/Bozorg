@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import bozorg.common.objects.Constants;
 import bozorg.judge.Judge;
 import mapCreator.MapCreator;
 
@@ -171,7 +170,7 @@ public class OfflineModePanel extends JPanel {
 				panel.setVisible(true);
 				panel.repaint();
 				menuFrame.hide();
-				start();
+				controller.start();
 				// TODO
 			}
 		});
@@ -269,27 +268,5 @@ public class OfflineModePanel extends JPanel {
 		back.setSize(100, 25);
 		back.setLocation(25, 400);
 
-	}
-
-	private void start() {
-		boolean running = true;
-		Thread gameLoop = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while (running) {
-
-					engine.next50milis();
-					panel.repaint();
-					try {
-						Thread.sleep(1000 / Constants.FPS);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-		});
-		gameLoop.start();
 	}
 }
