@@ -15,6 +15,7 @@ public class HasteEvent extends Event {
 	@Override
 	public void execute() throws BozorgExceptionBase {
 		player.changePowerUp(Constants.HASTE, 1);
+		player.setSpeed(10);
 
 	}
 
@@ -23,6 +24,7 @@ public class HasteEvent extends Event {
 		player.changePowerUp(Constants.HASTE, -1);
 		if (player.hasPowerUp(Constants.HASTE))
 			return false;
+		player.resetSpeed();
 		return true;
 
 	}

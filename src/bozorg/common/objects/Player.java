@@ -131,6 +131,23 @@ public class Player extends Person {
 		}
 	}
 
+	public void setSpeed(int speed) {
+		try {
+			updateInfo(Constants.SPEED, speed);
+		} catch (BozorgExceptionBase e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void resetSpeed() {
+		try {
+			updateInfo(Constants.SPEED, Constants.PLAYER_INFO[name][1]);
+		} catch (BozorgExceptionBase e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void respawn() {
 		canMove = canAttack = true;
 		this.info.put(Constants.FANS, Constants.PLAYER_INFO[name][0]);

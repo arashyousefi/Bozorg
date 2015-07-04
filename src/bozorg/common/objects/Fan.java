@@ -39,8 +39,10 @@ public class Fan extends Person {
 			return;
 		try {
 			updateInfo(Constants.IS_ALIVE, Constants.DEAD);
+			if (block != null)
+				block.removePerson(this);
 		} catch (Exception e) {
-			// TODO
+			e.printStackTrace();
 		}
 	}
 
@@ -53,6 +55,11 @@ public class Fan extends Person {
 		}
 		if (block != null)
 			block.removePerson(this);
+	}
+
+	public void die(Player player) {
+		if (owner != player)
+			die();
 	}
 
 }

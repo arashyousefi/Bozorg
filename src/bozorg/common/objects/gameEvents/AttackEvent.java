@@ -18,7 +18,7 @@ public class AttackEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		Position pos = player.getBlock().getPos();
+		Position pos = player.getBlock().getPos().move(dir);
 		player.setCanAttack(false);
 		for (Person p : World.getMap().at(pos).getPeople())
 			p.recieveDamage(player);

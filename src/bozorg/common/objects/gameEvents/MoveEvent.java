@@ -24,8 +24,20 @@ public class MoveEvent extends Event {
 		player.setBlock(World.getMap().at(p));
 		player.getBlock().addPerson(player);
 		player.setCanMove(false);
-		if (World.getMap().at(p).getCellType() == Constants.JJ_CELL && World.getJJVisible()) {
-			World.win(player);
+
+		for (Person person : player.getBlock().getPeople()) {
+			if (person.getClass() == Fan.class) {
+				Fan fan = (Fan) person;
+				fan.die(player);
+			}
+		}
+		if (player.getBlock().getPlayers().size() == 1) {
+			if (World.getMap().at(p).getCellType() == Constants.JJ_CELL
+					&& World.isJJVisible()) {
+				World.win(player);
+			}
+			if (player.getBlock().getCellType(player) == Constants.BONUS_CELL)
+				EventHandler.addEvent(new AbsorbEvent(player));
 		}
 	}
 

@@ -133,7 +133,7 @@ public class World {
 
 	}
 
-	public static boolean getJJVisible() {
+	public static boolean isJJVisible() {
 		return JJVisible;
 	}
 

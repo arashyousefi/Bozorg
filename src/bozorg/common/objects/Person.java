@@ -65,7 +65,7 @@ public abstract class Person {
 			return false;
 		if (object.getClass() != this.getClass())
 			return false;
-		Player temp = (Player) object;
+		Person temp = (Person) object;
 		return id.equals(temp.id);
 	}
 

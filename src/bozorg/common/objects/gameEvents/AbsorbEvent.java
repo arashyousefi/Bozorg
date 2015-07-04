@@ -12,26 +12,33 @@ public class AbsorbEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		int type = player.getBlock().getCellType();
+		Block block = player.getBlock();
+		int type = block.getCellType();
 		switch (type) {
 
 		case Constants.SPEEDUP_CELL:
 			EventHandler.addEvent(new HasteEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.JUMP_CELL:
 			EventHandler.addEvent(new PhaseEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.RADAR_CELL:
 			EventHandler.addEvent(new SightEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.STONE_CELL:
 			EventHandler.addEvent(new StunnedEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.HOSPITAL_CELL:
 			EventHandler.addEvent(new HealEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.FAN_CELL:
 			EventHandler.addEvent(new FanEvent(player));
+			block.setType(Constants.NONE_CELL);
 			break;
 		}
 	}

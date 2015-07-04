@@ -70,20 +70,6 @@ public class GameController implements KeyListener {
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			try {
-				engine.getGift(players[1]);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-
-			}
-		if (e.getKeyCode() == KeyEvent.VK_ENTER)
-			try {
-				engine.getGift(players[0]);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-
-			}
 		if (e.getKeyCode() == KeyEvent.VK_8)
 			try {
 				engine.attack(players[0], Constants.UP);
@@ -143,13 +129,13 @@ public class GameController implements KeyListener {
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_CONTROL)
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			try {
 				engine.throwFan(players[1]);
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
+		if (e.getKeyCode() == KeyEvent.VK_ENTER)
 			try {
 				engine.throwFan(players[0]);
 			} catch (Exception exception) {

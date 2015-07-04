@@ -30,7 +30,6 @@ public class OfflineModePanel extends JPanel {
 	JLabel heightErrorLable = new JLabel(
 			"<html><font color = 'red'>Map height must be between 10 and 100</font></html>");
 	MapCreator mapCreator;
-	JButton createMap = new JButton("Creat Map");
 	JButton back = new JButton("Back");
 	JLabel player1 = new JLabel("Player 1:");
 	JLabel player2 = new JLabel("Player 2:");
@@ -51,34 +50,6 @@ public class OfflineModePanel extends JPanel {
 	public OfflineModePanel(BozorgMenuFrame menuFrame) {
 		this.setLayout(null);
 		this.setSize(500, 500);
-		createMap.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				int width = 0, height = 0;
-				try {
-					width = Integer.parseInt(widthField.getText());
-					height = Integer.parseInt(heightField.getText());
-				} catch (Exception e) {
-					mapCreator = null;
-					return;
-				}
-				if (width > 100 || width < 10)
-					widthErrorLable.show();
-				else
-					widthErrorLable.hide();
-				if (height > 100 || height < 10)
-					heightErrorLable.show();
-				else
-					heightErrorLable.hide();
-				if (heightErrorLable.isVisible() || widthErrorLable.isVisible()) {
-					mapCreator = null;
-					return;
-				}
-				mapCreator = new MapCreator(width, height, 2);
-			}
-
-		});
 		back.addActionListener(new ActionListener() {
 
 			@Override
@@ -161,6 +132,28 @@ public class OfflineModePanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				int width = 0, height = 0;
+				try {
+					width = Integer.parseInt(widthField.getText());
+					height = Integer.parseInt(heightField.getText());
+				} catch (Exception e) {
+					mapCreator = null;
+					return;
+				}
+				if (width > 100 || width < 10)
+					widthErrorLable.show();
+				else
+					widthErrorLable.hide();
+				if (height > 100 || height < 10)
+					heightErrorLable.show();
+				else
+					heightErrorLable.hide();
+				if (heightErrorLable.isVisible() || widthErrorLable.isVisible()) {
+					mapCreator = null;
+					return;
+				}
+				mapCreator = new MapCreator(width, height, 2);
+
 				if (mapCreator == null) {
 					startGameError.show();
 					return;
@@ -244,10 +237,6 @@ public class OfflineModePanel extends JPanel {
 		heightErrorLable.setSize(300, 25);
 		heightErrorLable.setLocation(150, 150);
 		heightErrorLable.hide();
-
-		this.add(createMap);
-		createMap.setSize(100, 25);
-		createMap.setLocation(25, 200);
 
 		this.add(player1);
 		player1.setSize(100, 25);

@@ -63,7 +63,7 @@ public class Block {
 	public int getCellType(Player player) {
 		if (isSeenBy(player)) {
 			if (cellType == Constants.JJ_CELL)
-				return (World.getJJVisible() ? Constants.JJ_CELL
+				return (World.isJJVisible() ? Constants.JJ_CELL
 						: Constants.NONE_CELL);
 			return cellType > 3 ? Constants.BONUS_CELL : cellType;
 		}
@@ -104,5 +104,17 @@ public class Block {
 	@Override
 	public String toString() {
 		return (pos.getY() + ", " + pos.getX());
+	}
+
+	public void setType(int type) {
+		cellType = type;
+	}
+
+	public ArrayList<Player> getPlayers() {
+		ArrayList<Player> ret = new ArrayList<Player>();
+		for (Person p : people)
+			if (p.getClass() == Player.class)
+				ret.add((Player) p);
+		return ret;
 	}
 }
