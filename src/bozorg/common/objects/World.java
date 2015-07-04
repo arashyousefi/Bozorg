@@ -133,11 +133,6 @@ public class World {
 
 	}
 
-	// returns all players
-	public ArrayList<Player> getp() {
-		return players;
-	}
-
 	public static boolean getJJVisible() {
 		return JJVisible;
 	}
@@ -146,4 +141,16 @@ public class World {
 		JJVisible = !JJVisible;
 	}
 
+	public GameObjectID[] getPlayers() {
+		ArrayList<GameObjectID> allPlayers = new ArrayList<>();
+		for (GameObjectID object : gameObjects.keySet())
+			if (object.getType() == Player.class)
+				allPlayers.add(object);
+		GameObjectID[] ret = new GameObjectID[allPlayers.size()];
+		return allPlayers.toArray(ret);
+	}
+
+	public ArrayList<Player> getp() {
+		return players;
+	}
 }

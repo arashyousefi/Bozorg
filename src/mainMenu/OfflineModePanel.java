@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import bozorg.common.objects.Constants;
 import bozorg.judge.Judge;
 import mapCreator.MapCreator;
 
@@ -41,6 +42,10 @@ public class OfflineModePanel extends JPanel {
 	JRadioButton[] radioGroup1 = { null, null, null, null };
 	JRadioButton[] radioGroup2 = { null, null, null, null };
 	ButtonGroup group1 = new ButtonGroup(), group2 = new ButtonGroup();
+
+	private Judge engine;
+	private GameController controller;
+	private GamePanel panel;
 
 	@SuppressWarnings("deprecation")
 	public OfflineModePanel(BozorgMenuFrame menuFrame) {
@@ -160,11 +165,12 @@ public class OfflineModePanel extends JPanel {
 					startGameError.show();
 					return;
 				}
-				Judge engine = new Judge();
+				engine = new Judge();
 				engine.loadMap(mapCreator.getCellTypes(),
 						mapCreator.getWallTypes(), player);
-				GamePanel panel = new GamePanel();
-				GameController controller = new GameController();
+				panel = new GamePanel();
+				controller = new GameController();
+				controller.init(engine, panel);
 				panel.init(engine, controller);
 				panel.setJMenuBar(new BozorgMenuBar(engine, panel));
 				panel.pack();
@@ -172,6 +178,7 @@ public class OfflineModePanel extends JPanel {
 				panel.setVisible(true);
 				panel.repaint();
 				menuFrame.hide();
+				start();
 				// TODO
 			}
 		});
@@ -273,5 +280,27 @@ public class OfflineModePanel extends JPanel {
 		back.setSize(100, 25);
 		back.setLocation(25, 400);
 
+	}
+
+	private void start() {
+		boolean running = true;
+		Thread gameLoop = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (running) {
+
+					engine.next50milis();
+					panel.repaint();
+					try {
+						Thread.sleep(1000 / Constants.FPS);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+		});
+		gameLoop.start();
 	}
 }

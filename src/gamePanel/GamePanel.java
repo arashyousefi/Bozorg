@@ -30,6 +30,7 @@ public class GamePanel extends JFrame {
 	public void init(Judge engine, GameController controller) {
 		// TODO
 		this.engine = engine;
+		addKeyListener(controller);
 		setSize();
 		initStatusPanel();
 		initMapPanel();
@@ -44,7 +45,7 @@ public class GamePanel extends JFrame {
 	}
 
 	private void initMapPanel() {
-		mapPanel = new MapPanel( engine.getMapHeight(),engine.getMapWidth());
+		mapPanel = new MapPanel(engine.getMapHeight(), engine.getMapWidth());
 		getContentPane().add(mapPanel, BorderLayout.LINE_END);
 	}
 

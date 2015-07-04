@@ -19,6 +19,7 @@ public class PowerUpPanel extends JPanel {
 		initPowerUps();
 		this.type = type;
 		setBounds(type * 50, 200, 50, 50);
+		setVisible(true);
 	}
 
 	private static void initPowerUps() {
@@ -40,12 +41,7 @@ public class PowerUpPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
-		if (player != null)
+		if (player != null && player.hasPowerUp(type))
 			arg0.drawImage(pws[type], 0, 0, this);
-		if (player != null)
-			if (player.hasPowerUp(type))
-				setVisible(true);
-			else
-				setVisible(false);
 	}
 }

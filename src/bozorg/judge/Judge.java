@@ -155,17 +155,16 @@ public class Judge extends JudgeAbstract {
 		p.updateInfo(infoKey, infoValue);
 	}
 
+	public GameObjectID[] getPlayers() {
+		return world.getPlayers();
+	}
+
 	public ArrayList<Player> getp() {
 		return world.getp();
-		// XXX
 	}
 
 	public Block getBlock(int row, int col) {
 		return world.getBlock(row, col);
-	}
-
-	public ArrayList<Player> getPlayersInGame() {
-		return world.getp();
 	}
 
 	public static void main(String[] args) {
