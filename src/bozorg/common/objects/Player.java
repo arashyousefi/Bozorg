@@ -71,6 +71,10 @@ public class Player extends Person {
 		return !activeFans.isEmpty();
 	}
 
+	public int getNumberOfActiveFans() {
+		return activeFans.size();
+	}
+
 	public boolean canAttack() {
 		return canAttack;
 	}
@@ -92,7 +96,8 @@ public class Player extends Person {
 	}
 
 	public void addFan(Fan fan) {
-		this.fans.add(fan);
+		fans.add(fan);
+		activeFans.add(fan);
 	}
 
 	@Override

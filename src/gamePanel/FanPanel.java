@@ -40,7 +40,7 @@ public class FanPanel extends JPanel {
 		if (player != null) {
 			setVisible(true);
 			arg0.drawImage(image, 0, 0, this);
-			border.setTitle(player.getInfo(Constants.FANS) + "");
+			border.setTitle(player.getNumberOfActiveFans() + "");
 			border.setTitleColor(Color.WHITE);
 		}
 	}
