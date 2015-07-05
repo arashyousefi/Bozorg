@@ -84,8 +84,8 @@ public class Constants {
 
 	public static final int[] BONUS_INFO = { 5, 3, 3, 2, 0, 0 };
 
-	public static final int[] DX = { 0, 1, 0, -1 };
-	public static final int[] DY = { -1, 0, 1, 0 };
+	public static final int[] DX = { 0, 1, 0, -1, 0 };
+	public static final int[] DY = { -1, 0, 1, 0, 0 };
 
 	public static final int[][] PLAYER_INFO = { { 100, 2, 3, 5 },
 			{ 5, 5, 3, 1 }, { 0, 2, 6, 4 }, { 10, 2, 3, 5 } };

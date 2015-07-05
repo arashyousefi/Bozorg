@@ -72,30 +72,31 @@ public class GameController implements KeyListener {
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_8)
+		if (e.getKeyCode() == KeyEvent.VK_NUMPAD8)
 			try {
 				engine.attack(players[0], Constants.UP);
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_4)
+		if (e.getKeyCode() == KeyEvent.VK_NUMPAD4)
 			try {
 				engine.attack(players[0], Constants.LEFT);
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_5)
+		if (e.getKeyCode() == KeyEvent.VK_NUMPAD5)
 			try {
 				engine.attack(players[0], Constants.NONE);
 			} catch (Exception exception) {
+
 			}
-		if (e.getKeyCode() == KeyEvent.VK_6)
+		if (e.getKeyCode() == KeyEvent.VK_NUMPAD6)
 			try {
 				engine.attack(players[0], Constants.RIGHT);
 			} catch (Exception exception) {
 
 			}
-		if (e.getKeyCode() == KeyEvent.VK_2)
+		if (e.getKeyCode() == KeyEvent.VK_NUMPAD2)
 			try {
 				engine.attack(players[0], Constants.DOWN);
 			} catch (Exception exception) {

@@ -18,6 +18,7 @@ public class StatusPanel extends JPanel {
 	private PowerPanel power;
 	private HealthPanel health;
 	private SpeedPanel speed;
+	private FanPanel fans;
 
 	public void setPlayer(Player player) {
 		PowerUpPanel.setPlayer(player);
@@ -26,12 +27,15 @@ public class StatusPanel extends JPanel {
 		power.setPlayer(player);
 		speed.setPlayer(player);
 		health.setPlayer(player);
+		fans.setPlayer(player);
+
 		if (player == null) {
 			nameLabel.setVisible(false);
 			imagePanel.setVisible(false);
 			power.setVisible(false);
 			speed.setVisible(false);
 			health.setVisible(false);
+			fans.setVisible(false);
 
 		} else {
 			nameLabel.setVisible(true);
@@ -39,6 +43,7 @@ public class StatusPanel extends JPanel {
 			power.setVisible(true);
 			speed.setVisible(true);
 			health.setVisible(true);
+			fans.setVisible(true);
 
 		}
 	}
@@ -56,14 +61,18 @@ public class StatusPanel extends JPanel {
 
 	private void initStats() {
 		health = new HealthPanel();
-		health.setBounds(0, 140, 50, 50);
+		health.setBounds(0, 140, 40, 40);
 		speed = new SpeedPanel();
-		speed.setBounds(50, 140, 50, 50);
+		speed.setBounds(40, 140, 40, 40);
 		power = new PowerPanel();
-		power.setBounds(100, 140, 100, 150);
+		power.setBounds(120, 140, 80, 30);
+		fans = new FanPanel();
+		fans.setBounds(80, 140, 40, 40);
 		add(health);
 		add(speed);
 		add(power);
+		add(fans);
+		
 
 	}
 
