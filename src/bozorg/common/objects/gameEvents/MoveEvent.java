@@ -25,12 +25,13 @@ public class MoveEvent extends Event {
 		player.getBlock().addPerson(player);
 		player.setCanMove(false);
 
-		for (Person person : player.getBlock().getPeople()) {
-			if (person.getClass() == Fan.class) {
-				Fan fan = (Fan) person;
-				fan.die(player);
-			}
-		}
+		// for (Person person : player.getBlock().getPeople()) {
+		// if (person.getClass() == Fan.class) {
+		// Fan fan = (Fan) person;
+		// fan.die(player);
+		// }
+		// }
+
 		if (player.getBlock().getPlayers().size() == 1) {
 			if (World.getMap().at(p).getCellType() == Constants.JJ_CELL
 					&& World.isJJVisible()) {
