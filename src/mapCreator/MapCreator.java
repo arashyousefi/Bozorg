@@ -1,13 +1,13 @@
 package mapCreator;
 
 import java.util.*;
-
 import bozorg.common.objects.Constants;
 
 public class MapCreator {
 	public static final int Down = 0, Right = 1;
 	private int Height, Width, WallCount;
 	private boolean[][][] matrix;
+
 	private ArrayList<Wall> wallList = new ArrayList<Wall>();
 	private int[][] walltypes, celltypes;
 
@@ -98,7 +98,7 @@ public class MapCreator {
 			}
 		}
 
-		// seting cell types
+		// setting cell types
 		setNewCell(Constants.JJ_CELL);
 		for (int i = 0; i < players; ++i)
 			setNewCell(Constants.START_CELL);

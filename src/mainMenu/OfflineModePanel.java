@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import bozorg.judge.Judge;
 import mapCreator.MapCreator;
+import bozorg.judge.Judge;
 
 @SuppressWarnings("serial")
 public class OfflineModePanel extends JPanel {
