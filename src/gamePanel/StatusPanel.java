@@ -61,13 +61,13 @@ public class StatusPanel extends JPanel {
 
 	private void initStats() {
 		health = new HealthPanel();
-		health.setBounds(0, 140, 40, 40);
+		health.setBounds(40, 200, 40, 40);
 		speed = new SpeedPanel();
-		speed.setBounds(40, 140, 40, 40);
+		speed.setBounds(25, 140, 40, 40);
 		power = new PowerPanel();
-		power.setBounds(120, 140, 80, 30);
+		power.setBounds(90, 140, 80, 30);
 		fans = new FanPanel();
-		fans.setBounds(80, 140, 40, 40);
+		fans.setBounds(120, 200, 40, 40);
 		add(health);
 		add(speed);
 		add(power);
