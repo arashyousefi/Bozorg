@@ -30,11 +30,14 @@ public class GamePanel extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		setResizable(false);
+	}
+
+	public GamePanel(Player p) {
+		this();
 	}
 
 	public void init(Judge engine, GameController controller) {
