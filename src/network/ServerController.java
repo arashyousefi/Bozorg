@@ -7,14 +7,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import bozorg.common.GameObjectID;
+import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.World;
 import bozorg.judge.Judge;
 
-public class ServerController extends GameController implements KeyListener {
-	private Judge engine;
-	private GamePanel panel;
-	private boolean running = false;
+public class ServerController extends GameController {
 	private Server server;
 
 	public ServerController(Server server) {
@@ -48,7 +46,8 @@ public class ServerController extends GameController implements KeyListener {
 			public void run() {
 				running = true;
 				while (running) {
-
+					server.sendToAll(new BozorgMessage("controller",
+							new BozorgMessage("update")));
 					gameUpdate();
 					gameRender();
 					try {
@@ -72,6 +71,38 @@ public class ServerController extends GameController implements KeyListener {
 		engine.next50milis();
 		if (World.gameEnded())
 			running = false;
+	}
+
+	public void handle(BozorgMessage m) {
+		if (m.getType().equals("move")) {
+			try {
+				engine.movePlayer((GameObjectID) m.getArgs()[0],
+						(int) m.getArgs()[1]);
+			} catch (BozorgExceptionBase e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+
+		if (m.getType().equals("attack")) {
+			try {
+				engine.attack((GameObjectID) m.getArgs()[0],
+						(int) m.getArgs()[1]);
+			} catch (BozorgExceptionBase e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+
+		if (m.getType().equals("throwfan")) {
+			try {
+				engine.throwFan((GameObjectID) m.getArgs()[0]);
+			} catch (BozorgExceptionBase e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+
 	}
 
 }
