@@ -75,6 +75,10 @@ public class ServerController extends GameController {
 
 	public void handle(BozorgMessage m) {
 		if (m.getType().equals("move")) {
+			System.out.println(engine.IDToPlayer((GameObjectID) m.getArgs()[0])
+					.getName());
+		}
+		if (m.getType().equals("move")) {
 			try {
 				engine.movePlayer((GameObjectID) m.getArgs()[0],
 						(int) m.getArgs()[1]);
@@ -104,5 +108,4 @@ public class ServerController extends GameController {
 		}
 
 	}
-
 }

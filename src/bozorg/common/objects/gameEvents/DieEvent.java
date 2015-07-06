@@ -1,29 +1,36 @@
 package bozorg.common.objects.gameEvents;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
-import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
+import bozorg.common.objects.Person;
 import bozorg.common.objects.Player;
 
-public class DeathEvent extends Event {
+public class DieEvent extends Event {
+	private Person person;
 
-	public DeathEvent(Player player) {
+	public DieEvent(Player p) {
+		super(p);
+	}
+
+	public DieEvent(Player player, Person person) {
 		super(player);
+		this.person = person;
 		setTime();
 	}
 
 	@Override
 	public void setTime() {
-		time = Constants.RESPAWN_TIME * Constants.FPS;
+		time = 1;
+
 	}
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
+		person.die();
 	}
 
 	@Override
 	public boolean destroy() throws BozorgExceptionBase {
-		player.respawn();
 		return true;
 	}
 

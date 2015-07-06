@@ -35,7 +35,7 @@ public class Server {
 
 		for (int i = 0; i < clientConnections.length; ++i)
 			clientConnections[i].write(new BozorgMessage("init", mapCreator,
-					players, i));
+					players, playerID[i]));
 
 		panel = new GamePanel();
 		controller = new ServerController(this);
@@ -50,15 +50,17 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Enter map width and hieght");
+		// System.out.println("Enter map width and hieght");
 		Scanner scanner = new Scanner(System.in);
 		int w, h;
-		w = scanner.nextInt();
-		h = scanner.nextInt();
+		w = 10;
+		h = 20;
+		// w = scanner.nextInt();
+		// h = scanner.nextInt();
 		System.out.println("Enter number of players");
 		int n = scanner.nextInt();
-		System.out.println("Enter port");
-		int port = scanner.nextInt();
+		// System.out.println("Enter port");
+		int port = 1111;// scanner.nextInt();
 		Server server = new Server();
 		try {
 			server.serverSocket = new ServerSocket(port);

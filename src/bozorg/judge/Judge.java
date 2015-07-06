@@ -181,4 +181,8 @@ public class Judge extends JudgeAbstract {
 						+ World.getMap().at(i, j).getPos());
 
 	}
+
+	public Player IDToPlayer(GameObjectID player) {
+		return world.getPlayer(player);
+	}
 }

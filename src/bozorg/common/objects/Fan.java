@@ -1,6 +1,8 @@
 package bozorg.common.objects;
 
 import bozorg.common.GameObjectID;
+import bozorg.common.exceptions.BozorgExceptionBase;
+import bozorg.common.objects.gameEvents.DieEvent;
 
 public class Fan extends Person {
 	private Player owner;
@@ -35,13 +37,14 @@ public class Fan extends Person {
 
 	@Override
 	public void recieveDamage(Player player) {
-		if (player == this.getOwner())
+		System.out.println(owner.getName() + "' fan recieved dmg from "
+				+ player.getName());
+		if (player.equals(this.getOwner()))
 			return;
 		try {
 			updateInfo(Constants.IS_ALIVE, Constants.DEAD);
-			if (block != null)
-				block.removePerson(this);
-		} catch (Exception e) {
+		} catch (BozorgExceptionBase e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -51,7 +54,7 @@ public class Fan extends Person {
 		try {
 			updateInfo(Constants.IS_ALIVE, Constants.DEAD);
 		} catch (Exception e) {
-			// TODO
+			e.printStackTrace();
 		}
 		if (block != null)
 			block.removePerson(this);

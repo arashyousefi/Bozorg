@@ -13,6 +13,8 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 import mapCreator.MapCreator;
+import bozorg.common.GameObjectID;
+import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
 public class Client {
@@ -21,7 +23,7 @@ public class Client {
 	private Judge engine;
 	private ClientController controller;
 	private GamePanel panel;
-	private int player;
+	private GameObjectID ID;
 
 	public Client(String IP, int port) {
 		try {
@@ -32,15 +34,18 @@ public class Client {
 		}
 	}
 
-	public void init(MapCreator mapCreator, int[] players, int player) {
-		this.player = player;
+	public void init(MapCreator mapCreator, int[] players, GameObjectID player) {
+		this.ID = player;
 		engine = new Judge();
 		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
 				players);
 		panel = new GamePanel();
-		controller = new ClientController(this, this.player);
+
+		controller = new ClientController(this, this.ID);
 		controller.init(engine, panel);
 		panel.init(engine, controller);
+		panel.setPlayer(engine.IDToPlayer(ID));
+		panel.setTitle(player + "");
 		panel.pack();
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setVisible(true);
@@ -50,10 +55,10 @@ public class Client {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter host IP");
-		String IP = scanner.next();
-		System.out.println("Enter host port");
-		int port = scanner.nextInt();
+		// System.out.println("Enter host IP");
+		String IP = "192.168.1.2";// scanner.next();
+		// System.out.println("Enter host port");
+		int port = 1111;// scanner.nextInt();
 		try {
 			System.out.println("connecting");
 			Client client = new Client(IP, port);
@@ -67,10 +72,9 @@ public class Client {
 	}
 
 	public void handle(BozorgMessage m) {
-		System.out.println(m.getType());
 		if (m.getType().equals("init")) {
 			init((MapCreator) m.getArgs()[0], (int[]) m.getArgs()[1],
-					(int) m.getArgs()[2]);
+					(GameObjectID) m.getArgs()[2]);
 			return;
 		}
 		if (m.getType().equals("controller")) {
@@ -107,7 +111,7 @@ public class Client {
 				}
 			};
 
-//			read.setDaemon(true);
+			// read.setDaemon(true);
 			read.start();
 		}
 

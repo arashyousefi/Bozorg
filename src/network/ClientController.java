@@ -9,57 +9,57 @@ import gameController.GameController;
 
 public class ClientController extends GameController {
 	private Client client;
-	private int player;
+	private GameObjectID ID;
 
-	public ClientController(Client client, int player) {
+	public ClientController(Client client, GameObjectID ID) {
 		this.client = client;
-		this.player = player;
+		this.ID = ID;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("move", players[player], Constants.RIGHT)));
+					new BozorgMessage("move", ID, Constants.RIGHT)));
 
 		if (e.getKeyCode() == KeyEvent.VK_UP)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("move", players[player], Constants.UP)));
+					new BozorgMessage("move", ID, Constants.UP)));
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("move", players[player], Constants.LEFT)));
+					new BozorgMessage("move", ID, Constants.LEFT)));
 		if (e.getKeyCode() == KeyEvent.VK_DOWN)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("move", players[player], Constants.DOWN)));
+					new BozorgMessage("move", ID, Constants.DOWN)));
 
 		if (e.getKeyCode() == KeyEvent.VK_W)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("attack", players[player], Constants.UP)));
+					new BozorgMessage("attack", ID, Constants.UP)));
 
 		if (e.getKeyCode() == KeyEvent.VK_A)
 			client.sendToServer(new BozorgMessage(
 					"controller",
-					new BozorgMessage("attack", players[player], Constants.LEFT)));
+					new BozorgMessage("attack", ID, Constants.LEFT)));
 
 		if (e.getKeyCode() == KeyEvent.VK_S)
 			client.sendToServer(new BozorgMessage(
 					"controller",
-					new BozorgMessage("attack", players[player], Constants.DOWN)));
+					new BozorgMessage("attack", ID, Constants.DOWN)));
 
 		if (e.getKeyCode() == KeyEvent.VK_D)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("attack", players[player],
+					new BozorgMessage("attack", ID,
 							Constants.RIGHT)));
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			client.sendToServer(new BozorgMessage(
 					"controller",
-					new BozorgMessage("attack", players[player], Constants.NONE)));
+					new BozorgMessage("attack", ID, Constants.NONE)));
 
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("throwfan", players[player])));
+					new BozorgMessage("throwfan", ID)));
 
 	}
 

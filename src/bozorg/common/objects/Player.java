@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.gameEvents.DeathEvent;
+import bozorg.common.objects.gameEvents.DieEvent;
 
 public class Player extends Person {
 
@@ -102,6 +103,7 @@ public class Player extends Person {
 
 	@Override
 	public void recieveDamage(Player player) {
+		System.out.println(getName() + " recieved dmg from" + player.getName());
 		if (player.equals(this))
 			return;
 		int health = this.getInfo(Constants.HEALTH);
@@ -109,9 +111,15 @@ public class Player extends Person {
 			this.updateInfo(Constants.HEALTH,
 					health - player.getInfo(Constants.POWER));
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if (this.getInfo(Constants.HEALTH) <= 0)
-			die();
+			try {
+				updateInfo(Constants.IS_ALIVE, Constants.DEAD);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 
 	@Override
@@ -120,10 +128,12 @@ public class Player extends Person {
 			updateInfo(Constants.IS_ALIVE, Constants.DEAD);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		for (Fan fan : fans)
 			fan.die();
-		block.removePerson(this);
+		if (block != null)
+			block.removePerson(this);
 		for (int i = 0; i < powerUps.length; ++i)
 			powerUps[i] = 0;
 		fans.clear();

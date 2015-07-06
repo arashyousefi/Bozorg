@@ -1,5 +1,7 @@
 package bozorg.common.objects.gameEvents;
 
+import java.util.ArrayList;
+
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
@@ -22,6 +24,9 @@ public class AttackEvent extends Event {
 		player.setCanAttack(false);
 		for (Person p : World.getMap().at(pos).getPeople())
 			p.recieveDamage(player);
+		for (Person p : World.getMap().at(pos).getPeople())
+			if (p.getInfo(Constants.IS_ALIVE) == Constants.DEAD)
+				EventHandler.addEvent(new DieEvent(null, p));
 	}
 
 	@Override
