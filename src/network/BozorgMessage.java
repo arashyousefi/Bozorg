@@ -1,6 +1,8 @@
 package network;
 
-public class BozorgMessage {
+import java.io.Serializable;
+
+public class BozorgMessage implements Serializable {
 	private String type;
 	private Object[] args;
 

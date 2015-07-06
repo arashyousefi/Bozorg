@@ -1,9 +1,11 @@
 package mapCreator;
 
+import java.io.Serializable;
 import java.util.*;
+
 import bozorg.common.objects.Constants;
 
-public class MapCreator {
+public class MapCreator implements Serializable {
 	public static final int Down = 0, Right = 1;
 	private int Height, Width, WallCount;
 	private boolean[][][] matrix;

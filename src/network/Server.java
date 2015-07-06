@@ -1,6 +1,7 @@
 package network;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+import gamePanel.BozorgMenuBar;
 import gamePanel.GamePanel;
 import bozorg.common.GameObjectID;
 import bozorg.judge.Judge;
@@ -39,6 +41,7 @@ public class Server {
 		controller = new ServerController(this);
 		controller.init(engine, panel);
 		panel.init(engine, controller);
+		panel.setJMenuBar(new BozorgMenuBar(engine, panel));
 		panel.pack();
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setVisible(true);
@@ -65,8 +68,9 @@ public class Server {
 			scanner.close();
 			return;
 		}
+		System.out.println("waiting for connections");
 		server.players = new int[n];
-		server.clientConnections = (ClientConnection[]) new Object[n];
+		server.clientConnections = new ClientConnection[n];
 		for (int i = 0; i < n; ++i) {
 			Socket socket = null;
 			try {
@@ -79,7 +83,6 @@ public class Server {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("sending initial information");
 		server.start(w, h, n);
 		scanner.close();
 	}
@@ -96,10 +99,11 @@ public class Server {
 		ObjectOutputStream out;
 		Socket socket;
 
-		public ClientConnection(Socket s) throws IOException {
-			socket = s;
-			in = new ObjectInputStream(socket.getInputStream());
+		public ClientConnection(Socket socket) throws IOException {
+			this.socket = socket;
 			out = new ObjectOutputStream(socket.getOutputStream());
+			out.flush();
+			in = new ObjectInputStream(socket.getInputStream());
 
 			Thread read = new Thread() {
 				public void run() {
@@ -107,11 +111,8 @@ public class Server {
 						try {
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);
-						} catch (IOException e) {
-							e.printStackTrace();
-						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+						} catch (Exception e) {
+							// e.printStackTrace();
 						}
 					}
 				}
