@@ -15,6 +15,11 @@ public class ServerController extends GameController implements KeyListener {
 	private Judge engine;
 	private GamePanel panel;
 	private boolean running = false;
+	private Server server;
+
+	public ServerController(Server server) {
+		this.server = server;
+	}
 
 	public void init(Judge engine, GamePanel panel) {
 		this.engine = engine;
@@ -59,11 +64,11 @@ public class ServerController extends GameController implements KeyListener {
 
 	}
 
-	private void gameRender() {
+	public void gameRender() {
 		panel.repaint();
 	}
 
-	private void gameUpdate() {
+	public void gameUpdate() {
 		engine.next50milis();
 		if (World.gameEnded())
 			running = false;

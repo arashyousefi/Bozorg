@@ -11,10 +11,10 @@ import bozorg.common.objects.World;
 import bozorg.judge.Judge;
 
 public class GameController implements KeyListener {
-	private Judge engine;
-	private GameObjectID[] players;
-	private GamePanel panel;
-	private boolean running = false;
+	protected Judge engine;
+	protected GameObjectID[] players;
+	protected GamePanel panel;
+	protected boolean running = false;
 
 	public void init(Judge engine, GamePanel panel) {
 		this.engine = engine;
@@ -183,11 +183,11 @@ public class GameController implements KeyListener {
 
 	}
 
-	private void gameRender() {
+	public void gameRender() {
 		panel.repaint();
 	}
 
-	private void gameUpdate() {
+	public void gameUpdate() {
 		engine.next50milis();
 		if (World.gameEnded())
 			running = false;

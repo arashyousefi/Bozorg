@@ -10,6 +10,7 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 import gamePanel.GamePanel;
+import bozorg.common.GameObjectID;
 import bozorg.judge.Judge;
 import mapCreator.MapCreator;
 
@@ -19,17 +20,23 @@ public class Server {
 	private ServerController controller;
 	private GamePanel panel;
 	private int[] players;
-	private ServerSocket serverSoket;
+	private GameObjectID playerID[];
+	private ServerSocket serverSocket;
 	private ClientConnection[] clientConnections;
 
 	public void start(int mapWidth, int mapHeihgt, int numberOFPlayers) {
 		mapCreator = new MapCreator(mapWidth, mapHeihgt, numberOFPlayers);
-		sendToAll(new BozorgMessage("init", mapCreator, players));
 		engine = new Judge();
 		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
 				players);
+		playerID = engine.getPlayers();
+
+		for (int i = 0; i < clientConnections.length; ++i)
+			clientConnections[i].write(new BozorgMessage("init", mapCreator,
+					players, i));
+
 		panel = new GamePanel();
-		controller = new ServerController();
+		controller = new ServerController(this);
 		controller.init(engine, panel);
 		panel.init(engine, controller);
 		panel.pack();
@@ -51,7 +58,7 @@ public class Server {
 		int port = scanner.nextInt();
 		Server server = new Server();
 		try {
-			server.serverSoket = new ServerSocket(port);
+			server.serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
 			System.out.println("Faild to create server");
 			e.printStackTrace();
@@ -63,7 +70,7 @@ public class Server {
 		for (int i = 0; i < n; ++i) {
 			Socket socket = null;
 			try {
-				socket = server.serverSoket.accept();
+				socket = server.serverSocket.accept();
 				server.clientConnections[i] = server.new ClientConnection(
 						socket);
 				server.players[i] = i;
@@ -75,6 +82,10 @@ public class Server {
 		System.out.println("sending initial information");
 		server.start(w, h, n);
 		scanner.close();
+	}
+
+	public void handle(BozorgMessage m) {
+
 	}
 
 	class ClientConnection {
@@ -92,7 +103,7 @@ public class Server {
 					while (true) {
 						try {
 							Object obj = in.readObject();
-							// TODO handle the obj
+							handle((BozorgMessage) obj);
 						} catch (IOException e) {
 							e.printStackTrace();
 						} catch (ClassNotFoundException e) {

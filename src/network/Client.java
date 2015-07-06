@@ -7,6 +7,8 @@ import gamePanel.GamePanel;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -16,11 +18,12 @@ import mapCreator.MapCreator;
 import bozorg.judge.Judge;
 
 public class Client {
-	ConnectionToServer server;
-	Socket socket;
-	Judge engine;
-	ClientController controller;
-	GamePanel panel;
+	private ConnectionToServer server;
+	private Socket socket;
+	private Judge engine;
+	private ClientController controller;
+	private GamePanel panel;
+	private int player;
 
 	public Client(String IP, int port) {
 		try {
@@ -31,19 +34,20 @@ public class Client {
 		}
 	}
 
-	public void init(MapCreator mapCreator, int[] players) {
+	public void init(MapCreator mapCreator, int[] players, int player) {
+		this.player = player;
 		engine = new Judge();
 		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
 				players);
 		panel = new GamePanel();
-		controller = new ClientController();
+		controller = new ClientController(this, player);
 		controller.init(engine, panel);
 		panel.init(engine, controller);
 		panel.pack();
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setVisible(true);
 		panel.repaint();
-		controller.start();
+		// controller.start();
 	}
 
 	public static void main(String[] args) {
@@ -56,6 +60,22 @@ public class Client {
 
 		scanner.close();
 
+	}
+
+	public void handle(BozorgMessage m) {
+		if (m.getType().equals("init")) {
+			init((MapCreator) m.getArgs()[0], (int[]) m.getArgs()[1],
+					(int) m.getArgs()[2]);
+			return;
+		}
+		if (m.getType().equals("controller")) {
+			controller.handle((BozorgMessage) m.getArgs()[0]);
+		}
+
+	}
+
+	public void sendToServer(Object obj) {
+		server.write(obj);
 	}
 
 	public class ConnectionToServer {
@@ -73,7 +93,7 @@ public class Client {
 					while (true) {
 						try {
 							Object obj = in.readObject();
-							// TODO
+							handle((BozorgMessage) obj);
 						} catch (IOException e) {
 							e.printStackTrace();
 						} catch (ClassNotFoundException e) {
