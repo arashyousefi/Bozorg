@@ -18,7 +18,7 @@ public class PowerUpPanel extends JPanel {
 	public PowerUpPanel(int type) {
 		initPowerUps();
 		this.type = type;
-		setBounds(type * 50, 200, 50, 50);
+		setBounds(type * 50, 240, 50, 50);
 		setVisible(true);
 	}
 
