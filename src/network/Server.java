@@ -24,7 +24,7 @@ public class Server {
 
 	public void start(int mapWidth, int mapHeihgt, int numberOFPlayers) {
 		mapCreator = new MapCreator(mapWidth, mapHeihgt, numberOFPlayers);
-		sendToAll(new BozorgMessage("init", mapCreator));
+		sendToAll(new BozorgMessage("init", mapCreator, players));
 		engine = new Judge();
 		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
 				players);

@@ -1,14 +1,26 @@
 package network;
 
+import gameController.GameController;
+import gamePanel.BozorgMenuBar;
+import gamePanel.GamePanel;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
+import mapCreator.MapCreator;
+import bozorg.judge.Judge;
+
 public class Client {
 	ConnectionToServer server;
 	Socket socket;
+	Judge engine;
+	ClientController controller;
+	GamePanel panel;
 
 	public Client(String IP, int port) {
 		try {
@@ -19,6 +31,21 @@ public class Client {
 		}
 	}
 
+	public void init(MapCreator mapCreator, int[] players) {
+		engine = new Judge();
+		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
+				players);
+		panel = new GamePanel();
+		controller = new ClientController();
+		controller.init(engine, panel);
+		panel.init(engine, controller);
+		panel.pack();
+		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel.setVisible(true);
+		panel.repaint();
+		controller.start();
+	}
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter host IP");
@@ -26,8 +53,9 @@ public class Client {
 		System.out.println("Enter host port");
 		int port = scanner.nextInt();
 		Client client = new Client(IP, port);
-		
+
 		scanner.close();
+
 	}
 
 	public class ConnectionToServer {
@@ -49,7 +77,6 @@ public class Client {
 						} catch (IOException e) {
 							e.printStackTrace();
 						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
