@@ -33,7 +33,10 @@ public class BozorgMenuFrame extends JFrame {
 	}
 
 	public void changeToOnlineMode() {
-		// TODO
+		this.remove(panel);
+		panel = new OnlineModePanel(this);
+		this.add(panel);
+		this.repaint();
 	}
 
 	public void changeToOfflineMode() {
