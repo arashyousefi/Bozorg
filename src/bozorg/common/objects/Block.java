@@ -1,8 +1,9 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Block {
+public class Block implements Serializable {
 
 	private Position pos;
 	private int cellType;

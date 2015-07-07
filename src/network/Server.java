@@ -118,7 +118,7 @@ public class Server {
 
 	public void handle(BozorgMessage m) {
 		if (m.getType().equals("controller")) {
-			sendToAll(m);
+//			sendToAll(m);
 			controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
 	}

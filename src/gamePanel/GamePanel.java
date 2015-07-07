@@ -84,4 +84,8 @@ public class GamePanel extends JFrame {
 		statPanel.setPlayer(p);
 		MapPanel.setPlayer(p);
 	}
+
+	public void setEngine(Judge engine) {
+		this.engine = engine;
+	}
 }

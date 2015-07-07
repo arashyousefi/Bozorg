@@ -1,5 +1,6 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
 import java.util.*;
 
 import bozorg.common.GameObjectID;
@@ -10,7 +11,7 @@ import bozorg.common.objects.gameEvents.JJFlipEvent;
 import bozorg.common.objects.gameEvents.MoveEvent;
 import bozorg.common.objects.gameEvents.WardEvent;
 
-public class World {
+public class World implements Serializable {
 	private static Map map;
 	private EventHandler eh = new EventHandler();
 	private int gameTime;

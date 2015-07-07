@@ -1,10 +1,11 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-public class EventHandler {
+public class EventHandler implements Serializable {
 	private static ArrayList<Event> events = new ArrayList<>();
 
 	public EventHandler() {

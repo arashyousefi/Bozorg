@@ -1,13 +1,13 @@
 package bozorg.common;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import bozorg.common.GameObjectID;
-
 import bozorg.common.objects.*;
 
-public class AI {
+public class AI implements Serializable {
 	boolean edge_matrix[][] = new boolean[1500][1500];
 
 	public int doTurn(World world, GameObjectID player) {
