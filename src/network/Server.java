@@ -118,7 +118,7 @@ public class Server {
 
 	public void handle(BozorgMessage m) {
 		if (m.getType().equals("controller")) {
-//			sendToAll(m);
+			// sendToAll(m);
 			controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
 	}
@@ -156,20 +156,8 @@ public class Server {
 		public void write(Object obj) {
 			try {
 				out.writeUnshared(obj);
-<<<<<<< HEAD
 				out.flush();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 				out.reset();
-=======
->>>>>>> parent of 349665a... 123
-=======
->>>>>>> parent of cf51340... sdf
-=======
->>>>>>> parent of cf51340... sdf
-=======
->>>>>>> parent of cf51340... sdf
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

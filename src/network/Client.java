@@ -77,17 +77,15 @@ public class Client {
 					(GameObjectID) m.getArgs()[2]);
 			return;
 		}
-<<<<<<< HEAD
 		if (m.getType().equals("engine")) {
 			engine = (Judge) m.getArgs()[0];
 			panel.setEngine(engine);
 			panel.repaint();
-=======
-		if (m.getType().equals("controller")) {
-			controller.handle((BozorgMessage) m.getArgs()[0]);
->>>>>>> parent of 349665a... 123
-		}
+			if (m.getType().equals("controller")) {
+				controller.handle((BozorgMessage) m.getArgs()[0]);
+			}
 
+		}
 	}
 
 	public void sendToServer(Object obj) {
@@ -108,7 +106,7 @@ public class Client {
 			Thread read = new Thread() {
 				public void run() {
 					while (true) {
-//						System.out.println(socket.isConnected());
+						// System.out.println(socket.isConnected());
 						try {
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);
