@@ -38,23 +38,19 @@ public class ClientController extends GameController {
 					new BozorgMessage("attack", ID, Constants.UP)));
 
 		if (e.getKeyCode() == KeyEvent.VK_A)
-			client.sendToServer(new BozorgMessage(
-					"controller",
+			client.sendToServer(new BozorgMessage("controller",
 					new BozorgMessage("attack", ID, Constants.LEFT)));
 
 		if (e.getKeyCode() == KeyEvent.VK_S)
-			client.sendToServer(new BozorgMessage(
-					"controller",
+			client.sendToServer(new BozorgMessage("controller",
 					new BozorgMessage("attack", ID, Constants.DOWN)));
 
 		if (e.getKeyCode() == KeyEvent.VK_D)
 			client.sendToServer(new BozorgMessage("controller",
-					new BozorgMessage("attack", ID,
-							Constants.RIGHT)));
+					new BozorgMessage("attack", ID, Constants.RIGHT)));
 
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			client.sendToServer(new BozorgMessage(
-					"controller",
+			client.sendToServer(new BozorgMessage("controller",
 					new BozorgMessage("attack", ID, Constants.NONE)));
 
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT)

@@ -111,7 +111,7 @@ public class Server {
 				public void run() {
 					while (true) {
 						try {
-							System.out.println(socket.isConnected());
+							// System.out.println(socket.isConnected());
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);
 						} catch (Exception e) {
@@ -130,6 +130,7 @@ public class Server {
 			try {
 				out.writeObject(obj);
 				out.flush();
+				out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -101,7 +101,7 @@ public class Client {
 			Thread read = new Thread() {
 				public void run() {
 					while (true) {
-						System.out.println(socket.isClosed());
+						// System.out.println(socket.isClosed());
 						try {
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);
@@ -120,6 +120,7 @@ public class Client {
 			try {
 				out.writeObject(obj);
 				out.flush();
+				out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
