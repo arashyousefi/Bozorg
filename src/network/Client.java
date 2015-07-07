@@ -77,8 +77,10 @@ public class Client {
 					(GameObjectID) m.getArgs()[2]);
 			return;
 		}
-		if (m.getType().equals("controller")) {
-			controller.handle((BozorgMessage) m.getArgs()[0]);
+		if (m.getType().equals("engine")) {
+			engine = (Judge) m.getArgs()[0];
+			controller.repainPanel();
+			// controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
 
 	}

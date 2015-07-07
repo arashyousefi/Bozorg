@@ -45,18 +45,11 @@ public class ServerController extends GameController {
 			@Override
 			public void run() {
 				running = true;
-				int loops = 0;
 				while (running) {
-					System.out.println(loops);
-					server.sendToAll(new BozorgMessage("controller",
-							new BozorgMessage("update")));
+					server.sendToAll(new BozorgMessage("engine", engine));
 					gameUpdate();
 					gameRender();
 					panel.setTitle(engine.getTime() + "");
-					++loops;
-					if (loops % Constants.FPS == 0) {
-						// resync everything
-					}
 					try {
 						Thread.sleep(1000 / Constants.FPS);
 					} catch (InterruptedException e) {

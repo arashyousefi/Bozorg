@@ -1,5 +1,6 @@
 package bozorg.judge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +9,7 @@ import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
-public class Judge extends JudgeAbstract {
+public class Judge extends JudgeAbstract implements Serializable {
 
 	private World world = new World();
 	private AI ai = new AI();
