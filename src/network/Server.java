@@ -159,9 +159,12 @@ public class Server {
 <<<<<<< HEAD
 				out.flush();
 <<<<<<< HEAD
+<<<<<<< HEAD
 				out.reset();
 =======
 >>>>>>> parent of 349665a... 123
+=======
+>>>>>>> parent of cf51340... sdf
 =======
 >>>>>>> parent of cf51340... sdf
 			} catch (IOException e) {
