@@ -79,7 +79,7 @@ public class Client {
 		}
 		if (m.getType().equals("engine")) {
 			engine = (Judge) m.getArgs()[0];
-			panel.setEngine(engine);
+			panel.setEngine(engine, ID);
 			panel.repaint();
 		}
 
@@ -103,7 +103,7 @@ public class Client {
 			Thread read = new Thread() {
 				public void run() {
 					while (true) {
-//						System.out.println(socket.isConnected());
+						// System.out.println(socket.isConnected());
 						try {
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);

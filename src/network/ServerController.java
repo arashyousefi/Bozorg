@@ -46,9 +46,9 @@ public class ServerController extends GameController {
 			public void run() {
 				running = true;
 				while (running) {
-					server.sendToAll(new BozorgMessage("engine", engine));
 					gameUpdate();
 					gameRender();
+					server.sendToAll(new BozorgMessage("engine", engine));
 					panel.setTitle(engine.getTime() + "");
 					try {
 						Thread.sleep(1000 / Constants.FPS);
