@@ -26,6 +26,33 @@ public class Server {
 	private ServerSocket serverSocket;
 	private ClientConnection[] clientConnections;
 
+	public Server() {
+
+	}
+
+	public Server(int port, int numberOfPlayers, int mapWidth, int mapHeight)
+			throws IOException {
+		serverSocket = new ServerSocket(port);
+
+		System.out.println("waiting for connections");
+		players = new int[numberOfPlayers];
+		clientConnections = new ClientConnection[numberOfPlayers];
+		for (int i = 0; i < numberOfPlayers; ++i) {
+			Socket socket = null;
+			try {
+				socket = serverSocket.accept();
+				clientConnections[i] = new ClientConnection(socket);
+				players[i] = i;
+				System.out.println((i + 1) + " players conncted out of "
+						+ numberOfPlayers);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		start(mapWidth, mapHeight, numberOfPlayers);
+
+	}
+
 	public void start(int mapWidth, int mapHeihgt, int numberOFPlayers) {
 		mapCreator = new MapCreator(mapWidth, mapHeihgt, numberOFPlayers);
 		engine = new Judge();

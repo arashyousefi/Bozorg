@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import network.Client;
 import mapCreator.MapCreator;
 import bozorg.judge.Judge;
 
@@ -79,6 +80,10 @@ public class PlayerPanel extends JPanel {
 					return;
 				}
 				// TODO do something here
+				String IP = "" + first + "." + second + "." + third + "."
+						+ fourth;
+				Client client = new Client(IP, port);
+				menuFrame.hide();
 			}
 
 		});

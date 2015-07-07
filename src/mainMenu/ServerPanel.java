@@ -6,6 +6,7 @@ import gamePanel.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import network.Server;
 import mapCreator.MapCreator;
 import bozorg.judge.Judge;
 
@@ -96,21 +98,13 @@ public class ServerPanel extends JPanel {
 					mapCreator = null;
 					return;
 				}
-				mapCreator = new MapCreator(width, height, player.length);
-				engine = new Judge();
-				engine.loadMap(mapCreator.getCellTypes(),
-						mapCreator.getWallTypes(), player);
-				panel = new GamePanel();
-				controller = new GameController();
-				controller.init(engine, panel);
-				panel.init(engine, controller);
-				panel.setJMenuBar(new BozorgMenuBar(engine, panel));
-				panel.pack();
-				panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				panel.setVisible(true);
-				panel.repaint();
-				menuFrame.hide();
-				controller.start();
+				try {
+					Server server = new Server(port, number, width, height);
+					menuFrame.hide();
+				} catch (IOException e) {
+					System.out.println("Faild to create server");
+					e.printStackTrace();
+				}
 				// TODO do something with port
 			}
 

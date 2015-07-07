@@ -145,7 +145,7 @@ public class Judge extends JudgeAbstract {
 
 	@Override
 	public float getTime() {
-		return (float) world.getTime() / (float) 20.0;
+		return world.getTime();
 	}
 
 	@Override
