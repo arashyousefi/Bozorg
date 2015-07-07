@@ -1,8 +1,6 @@
 package bozorg.common.objects;
 
-import java.io.Serializable;
-
-public class Position implements Serializable {
+public class Position {
 	private int x;
 	private int y;
 	private World world;

@@ -1,13 +1,12 @@
 package bozorg.common.objects;
 
-import java.io.Serializable;
 import java.util.HashMap;
 
 import bozorg.common.GameObjectID;
 //import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-public abstract class Person implements Serializable {
+public abstract class Person {
 
 	protected Block block;
 	protected HashMap<String, Integer> info;

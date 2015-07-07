@@ -1,8 +1,6 @@
 package bozorg.common.objects;
 
-import java.io.Serializable;
-
-public class Bonus implements Serializable {
+public class Bonus {
 	public static final int HASTE = 0;
 	public static final int SIGHT = 1;
 	public static final int STUNNED = 2;

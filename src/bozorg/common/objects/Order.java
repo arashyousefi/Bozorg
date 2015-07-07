@@ -1,9 +1,8 @@
 package bozorg.common.objects;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Order implements Serializable {
+public class Order {
 	private int type, dir, speed, time;
 
 	public static final int UP = 0;

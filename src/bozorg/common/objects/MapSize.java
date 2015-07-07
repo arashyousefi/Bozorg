@@ -1,8 +1,6 @@
 package bozorg.common.objects;
 
-import java.io.Serializable;
-
-public class MapSize implements Serializable {
+public class MapSize {
 	private int width;
 	private int height;
 

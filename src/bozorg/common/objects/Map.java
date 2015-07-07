@@ -3,7 +3,7 @@ package bozorg.common.objects;
 import java.io.File;
 import java.io.Serializable;
 
-public class Map implements Serializable {
+public class Map {
 	private MapSize mapSize;
 	private Block[][] blocks;
 	private World world;
