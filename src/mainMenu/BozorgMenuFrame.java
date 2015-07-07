@@ -52,4 +52,20 @@ public class BozorgMenuFrame extends JFrame {
 		this.add(panel);
 		this.repaint();
 	}
+
+	public void changeServerPanel() {
+		this.remove(panel);
+		panel = new ServerPanel(this);
+		this.add(panel);
+		this.repaint();
+
+	}
+
+	public void changePlayerPanel() {
+		this.remove(panel);
+		panel = new PlayerPanel(this);
+		this.add(panel);
+		this.repaint();
+
+	}
 }
