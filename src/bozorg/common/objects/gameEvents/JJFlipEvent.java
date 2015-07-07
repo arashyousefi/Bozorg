@@ -20,12 +20,12 @@ public class JJFlipEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		player.getWorld().flipJJ();
+		World.flipJJ();
 	}
 
 	@Override
 	public boolean destroy() throws BozorgExceptionBase {
-		player.getWorld().flipJJ();
+		World.flipJJ();
 		return false;
 	}
 

@@ -16,12 +16,12 @@ public class Player extends Person {
 	private int name;
 	private Block startingBlock;
 
-	public Player(int name, Block startingBlock, World world) {
-		super(world);
+	public Player(int name, Block startingBlock) {
+		super();
 		this.name = name;
 		this.id = GameObjectID.create(Player.class);
 		this.startingBlock = startingBlock;
-		world.addPerson(this);
+		World.addPerson(this);
 
 		initializeConstants();
 		initializeFans();
@@ -30,7 +30,7 @@ public class Player extends Person {
 
 	private void initializeFans() {
 		for (int i = 0; i < info.get(Constants.FANS); ++i) {
-			Fan fan = new Fan(this, world);
+			Fan fan = new Fan(this);
 			this.fans.add(fan);
 			this.activeFans.add(fan);
 		}
@@ -192,9 +192,5 @@ public class Player extends Person {
 		if (player.getName() == this.name)
 			return true;
 		return false;
-	}
-
-	public World getWorld() {
-		return world;
 	}
 }

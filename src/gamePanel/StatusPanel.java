@@ -19,14 +19,9 @@ public class StatusPanel extends JPanel {
 	private HealthPanel health;
 	private SpeedPanel speed;
 	private FanPanel fans;
-	PowerUpPanel stun, haste, phase, sight;
 
 	public void setPlayer(Player player) {
-		sight.setPlayer(player);
-		haste.setPlayer(player);
-		phase.setPlayer(player);
-		stun.setPlayer(player);
-
+		PowerUpPanel.setPlayer(player);
 		nameLabel.setPlayer(player);
 		imagePanel.setPlayer(player);
 		power.setPlayer(player);
@@ -93,10 +88,10 @@ public class StatusPanel extends JPanel {
 	}
 
 	private void initPowerUps() {
-		sight = new PowerUpPanel(Constants.SIGHT);
-		phase = new PowerUpPanel(Constants.PHASE);
-		haste = new PowerUpPanel(Constants.HASTE);
-		stun = new PowerUpPanel(Constants.STUNNED);
+		PowerUpPanel sight = new PowerUpPanel(Constants.SIGHT);
+		PowerUpPanel phase = new PowerUpPanel(Constants.PHASE);
+		PowerUpPanel haste = new PowerUpPanel(Constants.HASTE);
+		PowerUpPanel stun = new PowerUpPanel(Constants.STUNNED);
 		add(stun);
 		add(haste);
 		add(phase);

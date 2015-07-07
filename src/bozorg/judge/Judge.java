@@ -185,8 +185,4 @@ public class Judge extends JudgeAbstract {
 	public Player IDToPlayer(GameObjectID player) {
 		return world.getPlayer(player);
 	}
-
-	public World getWorld() {
-		return world;
-	}
 }

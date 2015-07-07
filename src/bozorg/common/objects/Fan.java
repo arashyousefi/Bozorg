@@ -6,11 +6,11 @@ import bozorg.common.exceptions.BozorgExceptionBase;
 public class Fan extends Person {
 	private Player owner;
 
-	public Fan(Player owner, World world) {
-		super(world);
+	public Fan(Player owner) {
+		super();
 		this.owner = owner;
 		id = GameObjectID.create(Fan.class);
-		world.addPerson(this);
+		World.addPerson(this);
 		info.put(Constants.OWNER, owner.getName());
 	}
 
