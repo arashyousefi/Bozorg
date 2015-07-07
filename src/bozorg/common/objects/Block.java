@@ -14,7 +14,7 @@ public class Block implements Serializable {
 
 	public Block(int row, int col, int cellType, int wallType, World world) {
 		this.world = world;
-		pos = new Position(col, row, world);
+		pos = new Position(col, row);
 		this.cellType = cellType;
 		wall = wallType;
 	}

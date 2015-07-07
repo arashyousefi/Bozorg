@@ -19,12 +19,12 @@ public class AttackEvent extends Event {
 	@Override
 	public void execute() throws BozorgExceptionBase {
 		Position pos = player.getBlock().getPos().move(dir);
-		int size = player.getWorld().getMap().at(pos).getPeople().size();
+		int size = World.getMap().at(pos).getPeople().size();
 		Person[] deadPeople = new Person[size];
 		player.setCanAttack(false);
-		for (Person p : player.getWorld().getMap().at(pos).getPeople())
+		for (Person p : World.getMap().at(pos).getPeople())
 			p.recieveDamage(player);
-		for (Person p : player.getWorld().getMap().at(pos).getPeople())
+		for (Person p : World.getMap().at(pos).getPeople())
 			if (p.getInfo(Constants.IS_ALIVE) == Constants.DEAD)
 				deadPeople[--size] = p;
 		EventHandler.addEvent(new DieEvent(deadPeople));

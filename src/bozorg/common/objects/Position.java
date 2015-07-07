@@ -3,10 +3,8 @@ package bozorg.common.objects;
 public class Position {
 	private int x;
 	private int y;
-	private World world;
 
-	public Position(int x, int y, World world) {
-		this.world = world;
+	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -24,9 +22,9 @@ public class Position {
 	}
 
 	public boolean isValid() {
-		if (x < 0 || x >= world.getMapWidth())
+		if (x < 0 || x >= World.getMapWidth())
 			return false;
-		if (y < 0 || y >= world.getMapHeight())
+		if (y < 0 || y >= World.getMapHeight())
 			return false;
 		return true;
 	}
@@ -36,7 +34,7 @@ public class Position {
 	}
 
 	public Position move(int dir) {
-		Position p = new Position(x, y, world);
+		Position p = new Position(x, y);
 		p.x += Constants.DX[dir];
 		p.y += Constants.DY[dir];
 		return p;

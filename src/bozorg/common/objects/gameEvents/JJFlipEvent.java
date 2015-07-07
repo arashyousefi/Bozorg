@@ -7,11 +7,9 @@ import bozorg.common.objects.Player;
 import bozorg.common.objects.World;
 
 public class JJFlipEvent extends Event {
-	private World world;
 
-	public JJFlipEvent(Player player, World world) {
+	public JJFlipEvent(Player player) {
 		super(player);
-		this.world = world;
 		setTime();
 	}
 
@@ -22,12 +20,12 @@ public class JJFlipEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		world.flipJJ();
+		player.getWorld().flipJJ();
 	}
 
 	@Override
 	public boolean destroy() throws BozorgExceptionBase {
-		world.flipJJ();
+		player.getWorld().flipJJ();
 		return false;
 	}
 
