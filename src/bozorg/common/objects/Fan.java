@@ -1,16 +1,19 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
+
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-public class Fan extends Person {
+@SuppressWarnings("serial")
+public class Fan extends Person implements Serializable {
 	private Player owner;
 
-	public Fan(Player owner) {
-		super();
+	public Fan(Player owner, World world) {
+		super(world);
 		this.owner = owner;
 		id = GameObjectID.create(Fan.class);
-		World.addPerson(this);
+		world.addPerson(this);
 		info.put(Constants.OWNER, owner.getName());
 	}
 

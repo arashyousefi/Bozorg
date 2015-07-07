@@ -10,6 +10,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import bozorg.common.GameObjectID;
+import bozorg.common.exceptions.BozorgExceptionBase;
+import bozorg.common.objects.Constants;
 import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
@@ -85,7 +88,17 @@ public class GamePanel extends JFrame {
 		MapPanel.setPlayer(p);
 	}
 
-	public void setEngine(Judge engine) {
+	public void setEngine(Judge engine, GameObjectID id) {
 		this.engine = engine;
+		try {
+			System.out.println(engine.getInfo(id).get(Constants.FANS));
+		} catch (BozorgExceptionBase e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		initStatusPanel();
+		initMapPanel();
+		initCells();
+		setPlayer(engine.IDToPlayer(id));
 	}
 }

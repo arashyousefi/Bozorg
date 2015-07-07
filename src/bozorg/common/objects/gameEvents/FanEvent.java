@@ -3,13 +3,15 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
+import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Fan;
 import bozorg.common.objects.Player;
 
+@SuppressWarnings("serial")
 public class FanEvent extends Event {
 
-	public FanEvent(Player player) {
-		super(player);
+	public FanEvent(EventHandler eh, Player player) {
+		super(eh, player);
 		time = 1;
 	}
 
@@ -18,12 +20,12 @@ public class FanEvent extends Event {
 		int fans = player.getInfo(Constants.FANS);
 		player.updateInfo(Constants.FANS, fans + 3);
 		for (int i = 0; i < 3; ++i)
-			player.addFan(new Fan(player));
+			player.addFan(new Fan(player, player.getWorld()));
 
 	}
 
 	@Override
-	public boolean destroy()  {
+	public boolean destroy() {
 		return true;
 	}
 
@@ -34,7 +36,7 @@ public class FanEvent extends Event {
 
 	@Override
 	public void setTime() {
-		
+
 	}
 
 }

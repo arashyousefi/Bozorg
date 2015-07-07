@@ -3,12 +3,14 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
+import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Player;
 
+@SuppressWarnings("serial")
 public class HealEvent extends Event {
 
-	public HealEvent(Player player) {
-		super(player);
+	public HealEvent(EventHandler eh, Player player) {
+		super(eh, player);
 		this.player = player;
 		time = 1;
 	}

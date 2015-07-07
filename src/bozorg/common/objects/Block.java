@@ -3,27 +3,24 @@ package bozorg.common.objects;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class Block implements Serializable {
 
 	private Position pos;
 	private int cellType;
-	private ID id;
 	private int wall;
 	private ArrayList<Person> people = new ArrayList<Person>();
+	private World world;
 
-	public Block(int row, int col, int cellType, int wallType) {
-
-		pos = new Position(col, row);
+	public Block(int row, int col, int cellType, int wallType, World world) {
+		this.world = world;
+		pos = new Position(col, row, world);
 		this.cellType = cellType;
 		wall = wallType;
 	}
 
 	public Position getPos() {
 		return pos;
-	}
-
-	public ID getId() {
-		return id;
 	}
 
 	public int getWall() {
@@ -67,7 +64,7 @@ public class Block implements Serializable {
 	public int getCellType(Player player) {
 		if (isSeenBy(player)) {
 			if (cellType == Constants.JJ_CELL)
-				return (World.isJJVisible() ? Constants.JJ_CELL
+				return (world.isJJVisible() ? Constants.JJ_CELL
 						: Constants.NONE_CELL);
 			return cellType > 3 ? Constants.BONUS_CELL : cellType;
 		}
@@ -120,5 +117,9 @@ public class Block implements Serializable {
 			if (p.getClass() == Player.class)
 				ret.add((Player) p);
 		return ret;
+	}
+
+	public World getWorld() {
+		return world;
 	}
 }

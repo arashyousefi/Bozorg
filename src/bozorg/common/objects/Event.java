@@ -1,12 +1,17 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
+
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-public abstract class Event {
+@SuppressWarnings("serial")
+public abstract class Event implements Serializable {
 	protected int time;
 	protected Player player;
+	protected EventHandler eh;
 
-	public Event(Player player) {
+	public Event(EventHandler eh, Player player) {
+		this.eh = eh;
 		this.player = player;
 	}
 
@@ -26,7 +31,7 @@ public abstract class Event {
 
 	public abstract void execute() throws BozorgExceptionBase;
 
-	public abstract boolean destroy()throws BozorgExceptionBase;
+	public abstract boolean destroy() throws BozorgExceptionBase;
 
 	public abstract boolean isValid() throws BozorgExceptionBase;
 }

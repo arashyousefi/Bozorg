@@ -11,26 +11,27 @@ import bozorg.common.objects.gameEvents.JJFlipEvent;
 import bozorg.common.objects.gameEvents.MoveEvent;
 import bozorg.common.objects.gameEvents.WardEvent;
 
+@SuppressWarnings("serial")
 public class World implements Serializable {
-	private static Map map;
+	private Map map;
 	private EventHandler eh = new EventHandler();
 	private int gameTime;
-	private static HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
-	private static ArrayList<Player> players = new ArrayList<Player>();
-	private static boolean JJVisible;
-	private static boolean gameEnded = false;
-	private static Block JJBlock;
+	private HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
+	private ArrayList<Player> players = new ArrayList<Player>();
+	private boolean JJVisible;
+	private boolean gameEnded = false;
+	private Block JJBlock;
 
 	public ArrayList<GameObjectID> newGame(int[][] cellsType,
 			int[][] wallsType, int[] playersList) {
-		map = new Map(cellsType, wallsType, playersList);
+		map = new Map(this, cellsType, wallsType, playersList);
 
 		int k = 0;
 		for (int i = 0; i < map.getRows(); ++i)
 			for (int j = 0; j < map.getCols(); ++j) {
 				if (cellsType[i][j] == Constants.START_CELL) {
-					Player p = new Player(playersList[k++], map.at(i, j));
-					World.addPlayer(p);
+					Player p = new Player(playersList[k++], map.at(i, j), this);
+					this.addPlayer(p);
 					p.setBlock(map.at(i, j));
 					map.at(i, j).addPerson(p);
 				}
@@ -40,22 +41,22 @@ public class World implements Serializable {
 
 		JJVisible = true;
 		try {
-			EventHandler.addEvent(new JJFlipEvent(null));
+			eh.addEvent(new JJFlipEvent(eh, null, this));
 		} catch (BozorgExceptionBase e) {
 			e.printStackTrace();
 		}
 		return this.getEveryThing();
 	}
 
-	public static int getMapHeight() {
+	public int getMapHeight() {
 		return map.getRows();
 	}
 
-	public static int getMapWidth() {
+	public int getMapWidth() {
 		return map.getCols();
 	}
 
-	public static void win(Player player) {
+	public void win(Player player) {
 		for (Player p : players)
 			try {
 				if (p.equals(player))
@@ -68,11 +69,11 @@ public class World implements Serializable {
 		gameEnded = true;
 	}
 
-	public static boolean gameEnded() {
+	public boolean gameEnded() {
 		return gameEnded;
 	}
 
-	public static void addPerson(Person p) {
+	public void addPerson(Person p) {
 		gameObjects.put(p.getId(), p);
 	}
 
@@ -94,7 +95,7 @@ public class World implements Serializable {
 
 	public ArrayList<GameObjectID> getEveryThing() {
 		ArrayList<GameObjectID> ret = new ArrayList<GameObjectID>(
-				World.gameObjects.keySet());
+				this.gameObjects.keySet());
 		return ret;
 	}
 
@@ -125,11 +126,11 @@ public class World implements Serializable {
 		return (float) gameTime / Constants.FPS;
 	}
 
-	public static void addPlayer(Player p) {
-		World.players.add(p);
+	public void addPlayer(Player p) {
+		this.players.add(p);
 	}
 
-	public static Map getMap() {
+	public Map getMap() {
 		return map;
 	}
 
@@ -144,30 +145,30 @@ public class World implements Serializable {
 	}
 
 	public void movePlayer(Player p, int dir) throws BozorgExceptionBase {
-		EventHandler.addEvent(new MoveEvent(p, dir));
+		eh.addEvent(new MoveEvent(eh, p, dir));
 	}
 
 	public void attack(Player attacker, int dir) throws BozorgExceptionBase {
-		EventHandler.addEvent(new AttackEvent(attacker, dir));
+		eh.addEvent(new AttackEvent(eh, attacker, dir));
 
 	}
 
 	public GameObjectID throwFan(Player player) throws BozorgExceptionBase {
 		GameObjectID ret = player.nextFan();
-		EventHandler.addEvent(new WardEvent(player));
+		eh.addEvent(new WardEvent(eh, player));
 		return ret;
 	}
 
 	public void getGift(Player p) throws BozorgExceptionBase {
-		EventHandler.addEvent(new AbsorbEvent(p));
+		eh.addEvent(new AbsorbEvent(eh, p));
 
 	}
 
-	public static boolean isJJVisible() {
+	public boolean isJJVisible() {
 		return JJVisible;
 	}
 
-	public static void flipJJ() {
+	public void flipJJ() {
 		JJVisible = !JJVisible;
 		if (JJVisible) {
 			JJBlock.setType(Constants.JJ_CELL);
@@ -186,5 +187,9 @@ public class World implements Serializable {
 
 	public ArrayList<Player> getp() {
 		return players;
+	}
+
+	public EventHandler getEventHandler() {
+		return eh;
 	}
 }

@@ -1,9 +1,10 @@
 package bozorg.common.objects;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Order {
-	private int type, dir, speed, time;
+@SuppressWarnings("serial")
+public class Order implements Serializable {
+	private int type, dir, time;
 
 	public static final int UP = 0;
 	public static final int RIGHT = 1;
@@ -19,7 +20,6 @@ public class Order {
 	public Order(int type, int dir, int speed) {
 		this.type = type;
 		this.dir = dir;
-		this.speed = speed;
 		this.time = 20 / speed;
 	}
 

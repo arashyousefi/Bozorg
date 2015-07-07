@@ -5,14 +5,15 @@ import java.util.ArrayList;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
 
+@SuppressWarnings("serial")
 public class EventHandler implements Serializable {
-	private static ArrayList<Event> events = new ArrayList<>();
+	private ArrayList<Event> events = new ArrayList<>();
 
 	public EventHandler() {
 
 	}
 
-	public static void addEvent(Event event) throws BozorgExceptionBase {
+	public void addEvent(Event event) throws BozorgExceptionBase {
 		if (!event.isValid())
 			throw new BozorgExceptionBase();
 		events.add(event);

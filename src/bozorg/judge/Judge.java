@@ -1,5 +1,6 @@
 package bozorg.judge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +9,8 @@ import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
-public class Judge extends JudgeAbstract {
+@SuppressWarnings("serial")
+public class Judge extends JudgeAbstract implements Serializable {
 
 	private World world = new World();
 	private AI ai = new AI();
@@ -167,22 +169,11 @@ public class Judge extends JudgeAbstract {
 		return world.getBlock(row, col);
 	}
 
-	public static void main(String[] args) {
-		Judge judge = new Judge();
-		int[][] wallsType = { { 9, 13, 5, 3 }, { 8, 3, 9, 6 },
-				{ 10, 12, 6, 9 }, { 12, 5, 5, 6 } };
-		int[][] cellsType = { { 0, 3, 0, 4 }, { 0, 0, 0, 0 }, { 6, 0, 3, 1 },
-				{ 0, 0, 0, 0 } };
-		int[] players = { 0, 2 };
-		judge.loadMap(cellsType, wallsType, players);
-		for (int i = 0; i < 4; ++i)
-			for (int j = 0; j < 4; ++j)
-				System.out.println(i + " " + j + " "
-						+ World.getMap().at(i, j).getPos());
-
-	}
-
 	public Player IDToPlayer(GameObjectID player) {
 		return world.getPlayer(player);
+	}
+
+	public World getWorld() {
+		return world;
 	}
 }

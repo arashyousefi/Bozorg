@@ -1,11 +1,11 @@
 package bozorg.common.objects.gameEvents;
 
-import bozorg.common.objects.Constants;
 import bozorg.common.objects.*;
 
+@SuppressWarnings("serial")
 public class WardEvent extends Event {
-	public WardEvent(Player player) {
-		super(player);
+	public WardEvent(EventHandler eh, Player player) {
+		super(eh, player);
 		time = 1;
 	}
 

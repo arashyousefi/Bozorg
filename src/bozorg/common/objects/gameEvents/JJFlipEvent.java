@@ -3,13 +3,17 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
+import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Player;
 import bozorg.common.objects.World;
 
+@SuppressWarnings("serial")
 public class JJFlipEvent extends Event {
+	private World world;
 
-	public JJFlipEvent(Player player) {
-		super(player);
+	public JJFlipEvent(EventHandler eh, Player player, World world) {
+		super(eh, player);
+		this.world = world;
 		setTime();
 	}
 
@@ -20,12 +24,12 @@ public class JJFlipEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		World.flipJJ();
+		world.flipJJ();
 	}
 
 	@Override
 	public boolean destroy() throws BozorgExceptionBase {
-		World.flipJJ();
+		world.flipJJ();
 		return false;
 	}
 

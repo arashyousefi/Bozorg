@@ -7,6 +7,7 @@ import java.util.Queue;
 import bozorg.common.GameObjectID;
 import bozorg.common.objects.*;
 
+@SuppressWarnings("serial")
 public class AI implements Serializable {
 	boolean edge_matrix[][] = new boolean[1500][1500];
 
@@ -44,7 +45,7 @@ public class AI implements Serializable {
 		xq.add(x1 * height + y1);
 
 		s = xq.peek();
-		p1 = World.getMap().at(s / height, s % height).getPos();
+		p1 = world.getMap().at(s / height, s % height).getPos();
 		xq.poll();
 		for (int j = 0; j < 4; j++) {
 			p = p1.move(j);
@@ -55,7 +56,7 @@ public class AI implements Serializable {
 				mark[p.getX()][p.getY()] = true;
 				xq.add(p.getX() * height + p.getY());
 				yq.add(j);
-				if (World.getMap().at(p).getCellType() == target) {
+				if (world.getMap().at(p).getCellType() == target) {
 					return j;
 				}
 			}
@@ -66,7 +67,7 @@ public class AI implements Serializable {
 			con++;
 			s = xq.peek();
 			t = yq.peek();
-			p1 = World.getMap().at(s / height, s % height).getPos();
+			p1 = world.getMap().at(s / height, s % height).getPos();
 			xq.poll();
 			yq.poll();
 			for (int j = 0; j < 4; j++) {
@@ -80,7 +81,7 @@ public class AI implements Serializable {
 					mark[p.getX()][p.getY()] = true;
 					xq.add(p.getX() * height + p.getY());
 					yq.add(t);
-					if (World.getMap().at(p).getCellType() == target)
+					if (world.getMap().at(p).getCellType() == target)
 						return t;
 				}
 			}
@@ -104,7 +105,7 @@ public class AI implements Serializable {
 		for (int i = 0; i < width * height; ++i) {
 			x1 = i / height;
 			y1 = i % height;
-			b1 = World.getMap().at(x1, y1);
+			b1 = world.getMap().at(x1, y1);
 			p1 = b1.getPos();
 			jj = 1;
 			if (b1.isSeenBy(player))

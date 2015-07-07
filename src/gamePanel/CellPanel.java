@@ -3,10 +3,8 @@ package gamePanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import bozorg.common.objects.Block;
@@ -14,7 +12,6 @@ import bozorg.common.objects.Constants;
 import bozorg.common.objects.Fan;
 import bozorg.common.objects.Person;
 import bozorg.common.objects.Player;
-import bozorg.common.objects.World;
 
 @SuppressWarnings("serial")
 public class CellPanel extends JPanel {
@@ -61,7 +58,7 @@ public class CellPanel extends JPanel {
 			g.fillRect(0, 15, 30, 7);
 		}
 		if (block.getCellType(player) == Constants.JJ_CELL
-				&& World.isJJVisible()) {
+				&& block.getWorld().isJJVisible()) {
 			g.setColor(Color.magenta);
 			g.fillRect(0, 23, 30, 7);
 		}

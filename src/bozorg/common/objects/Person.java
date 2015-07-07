@@ -1,18 +1,22 @@
 package bozorg.common.objects;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import bozorg.common.GameObjectID;
 //import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-public abstract class Person {
+@SuppressWarnings("serial")
+public abstract class Person implements Serializable {
 
 	protected Block block;
 	protected HashMap<String, Integer> info;
 	protected GameObjectID id;
+	protected World world;
 
-	public Person() {
+	public Person(World world) {
+		this.world = world;
 		this.block = null;
 		this.info = new HashMap<String, Integer>();
 		this.info.put(Constants.ROW, -1);

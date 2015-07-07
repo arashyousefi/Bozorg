@@ -5,16 +5,13 @@ import gamePanel.GamePanel;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 
 import mapCreator.MapCreator;
 import bozorg.common.GameObjectID;
-import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
 public class Client {
@@ -79,13 +76,10 @@ public class Client {
 		}
 		if (m.getType().equals("engine")) {
 			engine = (Judge) m.getArgs()[0];
-			panel.setEngine(engine);
+			panel.setEngine(engine, ID);
 			panel.repaint();
-			if (m.getType().equals("controller")) {
-				controller.handle((BozorgMessage) m.getArgs()[0]);
-			}
-
 		}
+
 	}
 
 	public void sendToServer(Object obj) {
@@ -106,7 +100,7 @@ public class Client {
 			Thread read = new Thread() {
 				public void run() {
 					while (true) {
-//						System.out.println(socket.isConnected());
+						// System.out.println(socket.isConnected());
 						try {
 							Object obj = in.readObject();
 							handle((BozorgMessage) obj);

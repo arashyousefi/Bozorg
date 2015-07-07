@@ -4,12 +4,10 @@ import gameController.GameController;
 import gamePanel.GamePanel;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
-import bozorg.common.objects.World;
 import bozorg.judge.Judge;
 
 public class ServerController extends GameController {
@@ -45,21 +43,11 @@ public class ServerController extends GameController {
 			@Override
 			public void run() {
 				running = true;
-				int loops = 0;
 				while (running) {
-					System.out.println(loops);
-					server.sendToAll(new BozorgMessage("controller",
-							new BozorgMessage("update")));
-					server.sendToAll(new BozorgMessage("engine", engine));
-					server.sendToAll(new BozorgMessage("engine", engine));
-					server.sendToAll(new BozorgMessage("engine", engine));
 					gameUpdate();
 					gameRender();
+					server.sendToAll(new BozorgMessage("engine", engine));
 					panel.setTitle(engine.getTime() + "");
-					++loops;
-					if (loops % Constants.FPS == 0) {
-						// resync everything
-					}
 					try {
 						Thread.sleep(1000 / Constants.FPS);
 					} catch (InterruptedException e) {
@@ -79,7 +67,7 @@ public class ServerController extends GameController {
 
 	public void gameUpdate() {
 		engine.next50milis();
-		if (World.gameEnded())
+		if (engine.getWorld().gameEnded())
 			running = false;
 	}
 

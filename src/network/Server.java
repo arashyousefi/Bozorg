@@ -1,7 +1,6 @@
 package network;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -118,7 +117,7 @@ public class Server {
 
 	public void handle(BozorgMessage m) {
 		if (m.getType().equals("controller")) {
-//			sendToAll(m);
+			// sendToAll(m);
 			controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
 	}
@@ -156,18 +155,14 @@ public class Server {
 		public void write(Object obj) {
 			try {
 				out.writeUnshared(obj);
+				out.flush();
+				out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
 		public void flushAndReset() {
-			try {
-				out.flush();
-				// out.reset();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

@@ -3,10 +3,11 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
+@SuppressWarnings("serial")
 public class StunnedEvent extends Event {
 
-	public StunnedEvent(Player player) {
-		super(player);
+	public StunnedEvent(EventHandler eh, Player player) {
+		super(eh, player);
 		setTime();
 	}
 
