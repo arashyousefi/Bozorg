@@ -156,7 +156,6 @@ public class Server {
 		public void write(Object obj) {
 			try {
 				out.writeUnshared(obj);
-				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
