@@ -92,6 +92,7 @@ public class ClientController extends GameController {
 		if (m.getType().equals("update")) {
 			gameUpdate();
 			gameRender();
+			panel.setTitle(engine.getTime() + "");
 		}
 
 	}

@@ -47,10 +47,12 @@ public class ServerController extends GameController {
 				running = true;
 				int loops = 0;
 				while (running) {
+					System.out.println(loops);
 					server.sendToAll(new BozorgMessage("controller",
 							new BozorgMessage("update")));
 					gameUpdate();
 					gameRender();
+					panel.setTitle(engine.getTime() + "");
 					++loops;
 					if (loops % Constants.FPS == 0) {
 						// resync everything

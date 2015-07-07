@@ -155,9 +155,16 @@ public class Server {
 
 		public void write(Object obj) {
 			try {
-				out.writeObject(obj);
+				out.writeUnshared(obj);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void flushAndReset() {
+			try {
 				out.flush();
-				out.reset();
+				// out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -167,11 +174,15 @@ public class Server {
 	public void sendToOne(int index, Object message)
 			throws IndexOutOfBoundsException {
 		clientConnections[index].write(message);
+		clientConnections[index].flushAndReset();
+
 	}
 
 	public void sendToAll(Object message) {
 		for (ClientConnection client : clientConnections)
 			client.write(message);
+		for (ClientConnection client : clientConnections)
+			client.flushAndReset();
 	}
 
 }

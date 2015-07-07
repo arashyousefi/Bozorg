@@ -118,9 +118,9 @@ public class Client {
 
 		public void write(Object obj) {
 			try {
-				out.writeObject(obj);
+				out.writeUnshared(obj);
 				out.flush();
-				out.reset();
+				// out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
