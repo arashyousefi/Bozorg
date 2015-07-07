@@ -96,8 +96,4 @@ public class ClientController extends GameController {
 		}
 
 	}
-
-	public void repainPanel() {
-		panel.repaint();
-	}
 }

@@ -77,10 +77,15 @@ public class Client {
 					(GameObjectID) m.getArgs()[2]);
 			return;
 		}
+<<<<<<< HEAD
 		if (m.getType().equals("engine")) {
 			engine = (Judge) m.getArgs()[0];
 			panel.setEngine(engine, ID);
 			panel.repaint();
+=======
+		if (m.getType().equals("controller")) {
+			controller.handle((BozorgMessage) m.getArgs()[0]);
+>>>>>>> parent of 349665a... 123
 		}
 
 	}

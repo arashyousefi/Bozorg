@@ -156,14 +156,23 @@ public class Server {
 		public void write(Object obj) {
 			try {
 				out.writeUnshared(obj);
+<<<<<<< HEAD
 				out.flush();
 				out.reset();
+=======
+>>>>>>> parent of 349665a... 123
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
 		public void flushAndReset() {
+			try {
+				out.flush();
+				// out.reset();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
