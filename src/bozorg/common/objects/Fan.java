@@ -47,8 +47,8 @@ public class Fan extends Person {
 
 	@Override
 	public void die() {
-
-		block.removePerson(this);
+		if (block != null)
+			block.removePerson(this);
 	}
 
 }

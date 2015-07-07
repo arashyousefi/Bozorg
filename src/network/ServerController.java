@@ -45,11 +45,16 @@ public class ServerController extends GameController {
 			@Override
 			public void run() {
 				running = true;
+				int loops = 0;
 				while (running) {
 					server.sendToAll(new BozorgMessage("controller",
 							new BozorgMessage("update")));
 					gameUpdate();
 					gameRender();
+					++loops;
+					if (loops % Constants.FPS == 0) {
+						// resync everything
+					}
 					try {
 						Thread.sleep(1000 / Constants.FPS);
 					} catch (InterruptedException e) {
@@ -74,10 +79,6 @@ public class ServerController extends GameController {
 	}
 
 	public void handle(BozorgMessage m) {
-		if (m.getType().equals("move")) {
-			System.out.println(engine.IDToPlayer((GameObjectID) m.getArgs()[0])
-					.getName());
-		}
 		if (m.getType().equals("move")) {
 			try {
 				engine.movePlayer((GameObjectID) m.getArgs()[0],

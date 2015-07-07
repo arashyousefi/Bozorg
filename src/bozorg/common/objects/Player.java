@@ -122,13 +122,8 @@ public class Player extends Person {
 
 	@Override
 	public void die() {
-		try {
-			updateInfo(Constants.IS_ALIVE, Constants.DEAD);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		for (Fan fan : fans)
+		Fan[] dyingFans = fans.toArray(new Fan[fans.size()]);
+		for (Fan fan : dyingFans)
 			fan.die();
 		if (block != null)
 			block.removePerson(this);
