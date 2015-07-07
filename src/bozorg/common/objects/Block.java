@@ -3,11 +3,11 @@ package bozorg.common.objects;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@SuppressWarnings("serial")
 public class Block implements Serializable {
 
 	private Position pos;
 	private int cellType;
+	private ID id;
 	private int wall;
 	private ArrayList<Person> people = new ArrayList<Person>();
 	private World world;
@@ -21,6 +21,10 @@ public class Block implements Serializable {
 
 	public Position getPos() {
 		return pos;
+	}
+
+	public ID getId() {
+		return id;
 	}
 
 	public int getWall() {

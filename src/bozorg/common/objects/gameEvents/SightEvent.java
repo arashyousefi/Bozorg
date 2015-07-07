@@ -3,14 +3,12 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
-import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Player;
 
-@SuppressWarnings("serial")
 public class SightEvent extends Event {
 
-	public SightEvent(EventHandler eh, Player player) {
-		super(eh, player);
+	public SightEvent(Player player) {
+		super(player);
 		setTime();
 	}
 

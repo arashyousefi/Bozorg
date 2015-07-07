@@ -2,7 +2,6 @@ package bozorg.common.objects;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Constants implements Serializable {
 	private Constants() {
 

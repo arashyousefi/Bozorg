@@ -2,7 +2,6 @@ package network;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class BozorgMessage implements Serializable {
 	private String type;
 	private Object[] args;

@@ -3,13 +3,12 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
-@SuppressWarnings("serial")
 public class MoveEvent extends Event {
 
 	private int dir;
 
-	public MoveEvent(EventHandler eh, Player player, int dir) {
-		super(eh, player);
+	public MoveEvent(Player player, int dir) {
+		super(player);
 		setTime();
 		this.dir = dir;
 	}
@@ -39,7 +38,7 @@ public class MoveEvent extends Event {
 				player.getWorld().win(player);
 			}
 			if (player.getBlock().getCellType(player) == Constants.BONUS_CELL)
-				eh.addEvent(new AbsorbEvent(eh, player));
+				EventHandler.addEvent(new AbsorbEvent(player));
 		}
 	}
 

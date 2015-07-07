@@ -1,17 +1,24 @@
 package mainMenu;
 
+import gameController.GameController;
+import gamePanel.BozorgMenuBar;
+import gamePanel.GamePanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import network.Client;
 import mapCreator.MapCreator;
+import bozorg.judge.Judge;
 
-@SuppressWarnings("serial")
 public class PlayerPanel extends JPanel {
 	JTextField firstField = new JTextField(), secondField = new JTextField(),
 			thirdField = new JTextField(), fourthField = new JTextField(),
@@ -24,6 +31,10 @@ public class PlayerPanel extends JPanel {
 	MapCreator mapCreator;
 	JButton back = new JButton("Back");
 	JButton startGame = new JButton("join");
+
+	private Judge engine;
+	private GameController controller;
+	private GamePanel panel;
 
 	@SuppressWarnings("deprecation")
 	public PlayerPanel(BozorgMenuFrame menuFrame) {

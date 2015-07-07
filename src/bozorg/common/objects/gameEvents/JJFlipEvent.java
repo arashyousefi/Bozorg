@@ -3,16 +3,14 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
 import bozorg.common.objects.Event;
-import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Player;
 import bozorg.common.objects.World;
 
-@SuppressWarnings("serial")
 public class JJFlipEvent extends Event {
 	private World world;
 
-	public JJFlipEvent(EventHandler eh, Player player, World world) {
-		super(eh, player);
+	public JJFlipEvent(Player player, World world) {
+		super(player);
 		this.world = world;
 		setTime();
 	}

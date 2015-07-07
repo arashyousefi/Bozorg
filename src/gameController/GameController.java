@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 
 import bozorg.common.GameObjectID;
 import bozorg.common.objects.Constants;
+import bozorg.common.objects.World;
 import bozorg.judge.Judge;
 
 public class GameController implements KeyListener {
@@ -27,6 +28,7 @@ public class GameController implements KeyListener {
 			try {
 				engine.movePlayer(players[0], Constants.RIGHT);
 			} catch (Exception exception) {
+
 			}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			try {

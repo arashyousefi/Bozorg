@@ -5,7 +5,6 @@ import java.util.*;
 
 import bozorg.common.objects.Constants;
 
-@SuppressWarnings("serial")
 public class MapCreator implements Serializable {
 	public static final int Down = 0, Right = 1;
 	private int Height, Width, WallCount;

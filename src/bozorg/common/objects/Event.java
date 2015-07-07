@@ -4,14 +4,11 @@ import java.io.Serializable;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
 
-@SuppressWarnings("serial")
 public abstract class Event implements Serializable {
 	protected int time;
 	protected Player player;
-	protected EventHandler eh;
 
-	public Event(EventHandler eh, Player player) {
-		this.eh = eh;
+	public Event(Player player) {
 		this.player = player;
 	}
 

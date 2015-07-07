@@ -11,7 +11,6 @@ import bozorg.common.objects.gameEvents.JJFlipEvent;
 import bozorg.common.objects.gameEvents.MoveEvent;
 import bozorg.common.objects.gameEvents.WardEvent;
 
-@SuppressWarnings("serial")
 public class World implements Serializable {
 	private Map map;
 	private EventHandler eh = new EventHandler();
@@ -24,7 +23,7 @@ public class World implements Serializable {
 
 	public ArrayList<GameObjectID> newGame(int[][] cellsType,
 			int[][] wallsType, int[] playersList) {
-		map = new Map(this, cellsType, wallsType, playersList);
+		map = new Map(cellsType, wallsType, playersList);
 
 		int k = 0;
 		for (int i = 0; i < map.getRows(); ++i)
@@ -41,7 +40,7 @@ public class World implements Serializable {
 
 		JJVisible = true;
 		try {
-			eh.addEvent(new JJFlipEvent(eh, null, this));
+			EventHandler.addEvent(new JJFlipEvent(null, this));
 		} catch (BozorgExceptionBase e) {
 			e.printStackTrace();
 		}
@@ -145,22 +144,22 @@ public class World implements Serializable {
 	}
 
 	public void movePlayer(Player p, int dir) throws BozorgExceptionBase {
-		eh.addEvent(new MoveEvent(eh, p, dir));
+		EventHandler.addEvent(new MoveEvent(p, dir));
 	}
 
 	public void attack(Player attacker, int dir) throws BozorgExceptionBase {
-		eh.addEvent(new AttackEvent(eh, attacker, dir));
+		EventHandler.addEvent(new AttackEvent(attacker, dir));
 
 	}
 
 	public GameObjectID throwFan(Player player) throws BozorgExceptionBase {
 		GameObjectID ret = player.nextFan();
-		eh.addEvent(new WardEvent(eh, player));
+		EventHandler.addEvent(new WardEvent(player));
 		return ret;
 	}
 
 	public void getGift(Player p) throws BozorgExceptionBase {
-		eh.addEvent(new AbsorbEvent(eh, p));
+		EventHandler.addEvent(new AbsorbEvent(p));
 
 	}
 
@@ -187,9 +186,5 @@ public class World implements Serializable {
 
 	public ArrayList<Player> getp() {
 		return players;
-	}
-
-	public EventHandler getEventHandler() {
-		return eh;
 	}
 }

@@ -2,7 +2,6 @@ package bozorg.common.objects;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Bonus implements Serializable {
 	public static final int HASTE = 0;
 	public static final int SIGHT = 1;

@@ -1,20 +1,28 @@
 package mainMenu;
 
+import gameController.GameController;
+import gamePanel.BozorgMenuBar;
+import gamePanel.GamePanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import network.Server;
 import mapCreator.MapCreator;
+import bozorg.judge.Judge;
 
-@SuppressWarnings("serial")
 public class ServerPanel extends JPanel {
 	int[] player;
 	JTextField widthField = new JTextField(), heightField = new JTextField(),
@@ -33,6 +41,10 @@ public class ServerPanel extends JPanel {
 	MapCreator mapCreator;
 	JButton back = new JButton("Back");
 	JButton startGame = new JButton("Start Game!");
+
+	private Judge engine;
+	private GameController controller;
+	private GamePanel panel;
 
 	@SuppressWarnings("deprecation")
 	public ServerPanel(BozorgMenuFrame menuFrame) {
@@ -96,6 +108,7 @@ public class ServerPanel extends JPanel {
 				// TODO do something with port
 			}
 
+			@SuppressWarnings("serial")
 			private void setPlayers() {
 				player = new int[number];
 				Random random = new Random();
