@@ -48,14 +48,17 @@ public class ServerController extends GameController {
 				int loops = 0;
 				while (running) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					System.out.println(loops);
 					server.sendToAll(new BozorgMessage("controller",
 							new BozorgMessage("update")));
 >>>>>>> parent of 349665a... 123
+=======
+					server.sendToAll(new BozorgMessage("engine", engine));
+>>>>>>> parent of cf51340... sdf
 					gameUpdate();
 					gameRender();
-					server.sendToAll(new BozorgMessage("engine", engine));
 					panel.setTitle(engine.getTime() + "");
 					++loops;
 					if (loops % Constants.FPS == 0) {
