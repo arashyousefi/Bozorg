@@ -13,7 +13,6 @@ public class WardEvent extends Event {
 	public void execute() {
 		Fan fan = player.dropFan();
 		player.getBlock().addPerson(fan);
-		fan.setBlock(player.getBlock());
 	}
 
 	@Override

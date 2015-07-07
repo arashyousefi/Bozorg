@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.gameEvents.DeathEvent;
-import bozorg.common.objects.gameEvents.DieEvent;
 
 public class Player extends Person {
 
@@ -103,7 +102,6 @@ public class Player extends Person {
 
 	@Override
 	public void recieveDamage(Player player) {
-		System.out.println(getName() + " recieved dmg from" + player.getName());
 		if (player.equals(this))
 			return;
 		int health = this.getInfo(Constants.HEALTH);
@@ -186,5 +184,18 @@ public class Player extends Person {
 
 	public boolean isDead() {
 		return (getInfo(Constants.IS_ALIVE) == Constants.DEAD);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		Player player;
+		try {
+			player = (Player) object;
+		} catch (Exception e) {
+			return false;
+		}
+		if (player.getName() == this.name)
+			return true;
+		return false;
 	}
 }

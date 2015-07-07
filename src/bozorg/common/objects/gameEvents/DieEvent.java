@@ -3,18 +3,13 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Event;
 import bozorg.common.objects.Person;
-import bozorg.common.objects.Player;
 
 public class DieEvent extends Event {
-	private Person person;
+	private Person[] people;
 
-	public DieEvent(Player p) {
-		super(p);
-	}
-
-	public DieEvent(Player player, Person person) {
-		super(player);
-		this.person = person;
+	public DieEvent(Person[] deadPeople) {
+		super(null);
+		people = deadPeople;
 		setTime();
 	}
 
@@ -26,7 +21,10 @@ public class DieEvent extends Event {
 
 	@Override
 	public void execute() throws BozorgExceptionBase {
-		person.die();
+		for (int i = 0; i < people.length; ++i)
+			if (people[i] != null)
+				people[i].die();
+
 	}
 
 	@Override

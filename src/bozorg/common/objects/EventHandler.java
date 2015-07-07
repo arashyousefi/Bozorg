@@ -29,7 +29,6 @@ public class EventHandler {
 						temp.add(event);
 					}
 				} catch (BozorgExceptionBase e) {
-					// Nothing to do here!
 				}
 			else
 				temp.add(event);

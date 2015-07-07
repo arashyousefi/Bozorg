@@ -35,6 +35,7 @@ public class Block {
 	}
 
 	public void removePerson(Person person) {
+
 		person.setBlock(null);
 		this.people.remove(person);
 	}
