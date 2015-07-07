@@ -50,11 +50,15 @@ public class ServerController extends GameController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					System.out.println(loops);
 					server.sendToAll(new BozorgMessage("controller",
 							new BozorgMessage("update")));
 >>>>>>> parent of 349665a... 123
+=======
+					server.sendToAll(new BozorgMessage("engine", engine));
+>>>>>>> parent of cf51340... sdf
 =======
 					server.sendToAll(new BozorgMessage("engine", engine));
 >>>>>>> parent of cf51340... sdf
