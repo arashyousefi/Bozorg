@@ -7,6 +7,7 @@ import java.util.Queue;
 import bozorg.common.GameObjectID;
 import bozorg.common.objects.*;
 
+@SuppressWarnings("serial")
 public class AI implements Serializable {
 	boolean edge_matrix[][] = new boolean[1500][1500];
 

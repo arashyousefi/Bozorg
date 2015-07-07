@@ -9,6 +9,7 @@ import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.*;
 
+@SuppressWarnings("serial")
 public class Judge extends JudgeAbstract implements Serializable {
 
 	private World world = new World();

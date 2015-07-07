@@ -3,10 +3,11 @@ package bozorg.common.objects.gameEvents;
 import bozorg.common.objects.*;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
+@SuppressWarnings("serial")
 public class AbsorbEvent extends Event {
 
-	public AbsorbEvent(Player player) {
-		super(player);
+	public AbsorbEvent(EventHandler eh, Player player) {
+		super(eh, player);
 		time = 1;
 	}
 
@@ -17,27 +18,27 @@ public class AbsorbEvent extends Event {
 		switch (type) {
 
 		case Constants.SPEEDUP_CELL:
-			EventHandler.addEvent(new HasteEvent(player));
+			eh.addEvent(new HasteEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.JUMP_CELL:
-			EventHandler.addEvent(new PhaseEvent(player));
+			eh.addEvent(new PhaseEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.RADAR_CELL:
-			EventHandler.addEvent(new SightEvent(player));
+			eh.addEvent(new SightEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.STONE_CELL:
-			EventHandler.addEvent(new StunnedEvent(player));
+			eh.addEvent(new StunnedEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.HOSPITAL_CELL:
-			EventHandler.addEvent(new HealEvent(player));
+			eh.addEvent(new HealEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		case Constants.FAN_CELL:
-			EventHandler.addEvent(new FanEvent(player));
+			eh.addEvent(new FanEvent(eh, player));
 			block.setType(Constants.NONE_CELL);
 			break;
 		}

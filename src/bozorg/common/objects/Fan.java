@@ -5,6 +5,7 @@ import java.io.Serializable;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
+@SuppressWarnings("serial")
 public class Fan extends Person implements Serializable {
 	private Player owner;
 

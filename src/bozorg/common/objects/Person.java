@@ -7,6 +7,7 @@ import bozorg.common.GameObjectID;
 //import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.exceptions.BozorgExceptionBase;
 
+@SuppressWarnings("serial")
 public abstract class Person implements Serializable {
 
 	protected Block block;

@@ -2,13 +2,15 @@ package bozorg.common.objects.gameEvents;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Event;
+import bozorg.common.objects.EventHandler;
 import bozorg.common.objects.Person;
 
+@SuppressWarnings("serial")
 public class DieEvent extends Event {
 	private Person[] people;
 
-	public DieEvent(Person[] deadPeople) {
-		super(null);
+	public DieEvent(EventHandler eh, Person[] deadPeople) {
+		super(eh, null);
 		people = deadPeople;
 		setTime();
 	}

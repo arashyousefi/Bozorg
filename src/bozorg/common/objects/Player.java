@@ -6,6 +6,7 @@ import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.gameEvents.DeathEvent;
 
+@SuppressWarnings("serial")
 public class Player extends Person {
 
 	private int[] powerUps = new int[5];
@@ -132,7 +133,8 @@ public class Player extends Person {
 		fans.clear();
 		activeFans.clear();
 		try {
-			EventHandler.addEvent(new DeathEvent(this));
+			world.getEventHandler().addEvent(
+					new DeathEvent(world.getEventHandler(), this));
 		} catch (BozorgExceptionBase e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

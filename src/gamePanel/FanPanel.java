@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import bozorg.common.objects.Constants;
 import bozorg.common.objects.Player;
 
 @SuppressWarnings("serial")

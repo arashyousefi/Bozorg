@@ -3,6 +3,7 @@ package bozorg.common.objects;
 import java.io.File;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Map implements Serializable {
 	private MapSize mapSize;
 	private Block[][] blocks;
@@ -12,8 +13,8 @@ public class Map implements Serializable {
 		loadMapFromFile(file);
 	}
 
-	public Map(int[][] cellsType, int[][] wallsType, int[] players) {
-		world = new World();
+	public Map(World world, int[][] cellsType, int[][] wallsType, int[] players) {
+		this.world = world;
 		int row = cellsType.length;
 		int col = cellsType[0].length;
 		mapSize = new MapSize(row, col);
