@@ -33,8 +33,6 @@ public class OfflineModePanel extends JPanel {
 	JLabel player1 = new JLabel("Player 1:");
 	JLabel player2 = new JLabel("Player 2:");
 	JButton startGame = new JButton("Start Game!");
-	JLabel startGameError = new JLabel(
-			"<html><font color = 'red'>First create a map, then start the game!</font></html>");
 
 	String[] playerNames = { "Saman", "Jafar", "Reza", "Hasin" };
 	JRadioButton[] radioGroup1 = { null, null, null, null };
@@ -153,10 +151,6 @@ public class OfflineModePanel extends JPanel {
 				}
 				mapCreator = new MapCreator(width, height, 2);
 
-				if (mapCreator == null) {
-					startGameError.show();
-					return;
-				}
 				engine = new Judge();
 				engine.loadMap(mapCreator.getCellTypes(),
 						mapCreator.getWallTypes(), player);
@@ -258,11 +252,6 @@ public class OfflineModePanel extends JPanel {
 		this.add(startGame);
 		startGame.setSize(150, 25);
 		startGame.setLocation(40, 350);
-
-		this.add(startGameError);
-		startGameError.setSize(300, 25);
-		startGameError.setLocation(200, 350);
-		startGameError.hide();
 
 		this.add(back);
 		back.setSize(100, 25);
