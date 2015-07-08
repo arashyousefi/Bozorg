@@ -20,7 +20,6 @@ public class Client {
 	private Judge engine;
 	private ClientController controller;
 	private GamePanel panel;
-	private GameObjectID ID;
 
 	public Client(String IP, int port) {
 		try {
@@ -32,22 +31,21 @@ public class Client {
 	}
 
 	public void init(MapCreator mapCreator, int[] players, GameObjectID player) {
-		this.ID = player;
 		engine = new Judge();
 		engine.loadMap(mapCreator.getCellTypes(), mapCreator.getWallTypes(),
 				players);
 		panel = new GamePanel();
 
-		controller = new ClientController(this, this.ID);
+		controller = new ClientController(this, player);
 		controller.init(engine, panel);
 		panel.init(engine, controller);
-		panel.setPlayer(engine.IDToPlayer(ID));
+		panel.setPlayer(engine.IDToPlayer(player));
 		panel.setTitle(player + "");
 		panel.pack();
 		panel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		panel.setVisible(true);
 		panel.repaint();
-		// controller.start();
+
 	}
 
 	public static void main(String[] args) {
@@ -65,20 +63,6 @@ public class Client {
 			e.printStackTrace();
 		}
 		scanner.close();
-
-	}
-
-	public void handle(BozorgMessage m) {
-		if (m.getType().equals("init")) {
-			init((MapCreator) m.getArgs()[0], (int[]) m.getArgs()[1],
-					(GameObjectID) m.getArgs()[2]);
-			return;
-		}
-		if (m.getType().equals("engine")) {
-			engine = (Judge) m.getArgs()[0];
-			panel.setEngine(engine, ID);
-			panel.repaint();
-		}
 
 	}
 
@@ -100,18 +84,29 @@ public class Client {
 			Thread read = new Thread() {
 				public void run() {
 					while (true) {
-						// System.out.println(socket.isConnected());
 						try {
 							Object obj = in.readObject();
+
 							handle((BozorgMessage) obj);
 						} catch (Exception e) {
 							// e.printStackTrace();
 						}
 					}
 				}
+
+				private void handle(BozorgMessage m) {
+					if (m.getType().equals("init")) {
+						init((MapCreator) m.getArgs()[0],
+								(int[]) m.getArgs()[1],
+								(GameObjectID) m.getArgs()[2]);
+						return;
+					}
+					if (m.getType().equals("controller")) {
+						controller.handle((BozorgMessage) m.getArgs()[0]);
+					}
+				}
 			};
 
-			// read.setDaemon(true);
 			read.start();
 		}
 
@@ -119,7 +114,6 @@ public class Client {
 			try {
 				out.writeUnshared(obj);
 				out.flush();
-				// out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -176,4 +176,6 @@ public class Judge extends JudgeAbstract implements Serializable {
 	public World getWorld() {
 		return world;
 	}
+
+
 }

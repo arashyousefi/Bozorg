@@ -12,7 +12,7 @@ import bozorg.common.objects.Player;
 @SuppressWarnings("serial")
 public class PowerUpPanel extends JPanel {
 	private Player player;
-	private BufferedImage[] pws;
+	private static BufferedImage[] pws;
 	int type;
 
 	public PowerUpPanel(int type) {
@@ -22,7 +22,7 @@ public class PowerUpPanel extends JPanel {
 		setVisible(true);
 	}
 
-	private void initPowerUps() {
+	private static void initPowerUps() {
 		pws = new BufferedImage[4];
 		try {
 			pws[0] = ImageIO.read(new File("resources/haste.png"));

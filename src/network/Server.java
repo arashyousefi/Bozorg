@@ -117,7 +117,7 @@ public class Server {
 
 	public void handle(BozorgMessage m) {
 		if (m.getType().equals("controller")) {
-			// sendToAll(m);
+			sendToAll(m);
 			controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
 	}
@@ -137,17 +137,17 @@ public class Server {
 				public void run() {
 					while (true) {
 						try {
-							// System.out.println(socket.isConnected());
 							Object obj = in.readObject();
+
 							handle((BozorgMessage) obj);
+
 						} catch (Exception e) {
-							// e.printStackTrace();
 						}
 					}
 				}
 			};
 
-			read.setDaemon(true); // terminate when main ends
+			read.setDaemon(true);
 			read.start();
 
 		}
@@ -156,28 +156,16 @@ public class Server {
 			try {
 				out.writeUnshared(obj);
 				out.flush();
-				out.reset();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-		public void flushAndReset() {
-		}
-	}
-
-	public void sendToOne(int index, Object message)
-			throws IndexOutOfBoundsException {
-		clientConnections[index].write(message);
-		clientConnections[index].flushAndReset();
 
 	}
 
 	public void sendToAll(Object message) {
 		for (ClientConnection client : clientConnections)
 			client.write(message);
-		for (ClientConnection client : clientConnections)
-			client.flushAndReset();
 	}
 
 }

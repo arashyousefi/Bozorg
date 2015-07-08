@@ -2,6 +2,7 @@ package network;
 
 import java.awt.event.KeyEvent;
 
+import mapCreator.MapCreator;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
@@ -60,6 +61,7 @@ public class ClientController extends GameController {
 	}
 
 	public void handle(BozorgMessage m) {
+
 		if (m.getType().equals("move")) {
 			try {
 				engine.movePlayer((GameObjectID) m.getArgs()[0],
@@ -88,16 +90,11 @@ public class ClientController extends GameController {
 			}
 			return;
 		}
-
 		if (m.getType().equals("update")) {
+			
 			gameUpdate();
 			gameRender();
-			panel.setTitle(engine.getTime() + "");
 		}
 
-	}
-
-	public void repainPanel() {
-		panel.repaint();
 	}
 }

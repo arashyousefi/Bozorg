@@ -24,51 +24,14 @@ public class ServerController extends GameController {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	public void start() {
-		Thread gameLoop = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				running = true;
-				while (running) {
-					gameUpdate();
-					gameRender();
-					server.sendToAll(new BozorgMessage("engine", engine));
-					panel.setTitle(engine.getTime() + "");
-					try {
-						Thread.sleep(1000 / Constants.FPS);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-
-		});
-		gameLoop.start();
-
-	}
-
-	public void gameRender() {
-		panel.repaint();
-	}
-
-	public void gameUpdate() {
-		engine.next50milis();
-		if (engine.getWorld().gameEnded())
-			running = false;
 	}
 
 	public void handle(BozorgMessage m) {
@@ -100,6 +63,35 @@ public class ServerController extends GameController {
 			}
 			return;
 		}
+	}
+
+	@Override
+	public void start() {
+		Thread gameLoop = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				running = true;
+				while (running) {
+					updateServer();
+					try {
+						Thread.sleep(1000 / Constants.FPS);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			private void updateServer() {
+				gameUpdate();
+				gameRender();
+				server.sendToAll(new BozorgMessage("controller",
+						new BozorgMessage("update")));
+
+			}
+
+		});
+		gameLoop.start();
 
 	}
 }

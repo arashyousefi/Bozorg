@@ -19,7 +19,7 @@ public class StatusPanel extends JPanel {
 	private HealthPanel health;
 	private SpeedPanel speed;
 	private FanPanel fans;
-	PowerUpPanel stun, haste, phase, sight;
+	private PowerUpPanel stun, haste, phase, sight;
 
 	public void setPlayer(Player player) {
 		sight.setPlayer(player);
