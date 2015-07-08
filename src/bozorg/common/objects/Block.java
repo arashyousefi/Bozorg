@@ -10,9 +10,10 @@ public class Block implements Serializable {
 	private ID id;
 	private int wall;
 	private ArrayList<Person> people = new ArrayList<Person>();
+	private World world;
 
-	public Block(int row, int col, int cellType, int wallType) {
-
+	public Block(int row, int col, int cellType, int wallType, World world) {
+		this.world = world;
 		pos = new Position(col, row);
 		this.cellType = cellType;
 		wall = wallType;
@@ -67,7 +68,7 @@ public class Block implements Serializable {
 	public int getCellType(Player player) {
 		if (isSeenBy(player)) {
 			if (cellType == Constants.JJ_CELL)
-				return (World.isJJVisible() ? Constants.JJ_CELL
+				return (world.isJJVisible() ? Constants.JJ_CELL
 						: Constants.NONE_CELL);
 			return cellType > 3 ? Constants.BONUS_CELL : cellType;
 		}
@@ -120,5 +121,9 @@ public class Block implements Serializable {
 			if (p.getClass() == Player.class)
 				ret.add((Player) p);
 		return ret;
+	}
+
+	public World getWorld() {
+		return world;
 	}
 }

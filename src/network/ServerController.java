@@ -69,7 +69,7 @@ public class ServerController extends GameController {
 
 	public void gameUpdate() {
 		engine.next50milis();
-		if (World.gameEnded())
+		if (engine.getWorld().gameEnded())
 			running = false;
 	}
 

@@ -18,7 +18,7 @@ public class FanEvent extends Event {
 		int fans = player.getInfo(Constants.FANS);
 		player.updateInfo(Constants.FANS, fans + 3);
 		for (int i = 0; i < 3; ++i)
-			player.addFan(new Fan(player));
+			player.addFan(new Fan(player,player.getWorld()));
 
 	}
 

@@ -34,8 +34,8 @@ public class MoveEvent extends Event {
 
 		if (player.getBlock().getPlayers().size() == 1) {
 			if (World.getMap().at(p).getCellType() == Constants.JJ_CELL
-					&& World.isJJVisible()) {
-				World.win(player);
+					&& player.getWorld().isJJVisible()) {
+				player.getWorld().win(player);
 			}
 			if (player.getBlock().getCellType(player) == Constants.BONUS_CELL)
 				EventHandler.addEvent(new AbsorbEvent(player));
@@ -44,7 +44,7 @@ public class MoveEvent extends Event {
 
 	@Override
 	public boolean isValid() {
-		if (World.gameEnded())
+		if (player.getWorld().gameEnded())
 			return false;
 		Block block = player.getBlock();
 		if (!block.getPos().move(dir).isValid())

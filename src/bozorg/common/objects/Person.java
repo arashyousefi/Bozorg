@@ -11,8 +11,10 @@ public abstract class Person {
 	protected Block block;
 	protected HashMap<String, Integer> info;
 	protected GameObjectID id;
+	protected World world;
 
-	public Person() {
+	public Person(World world) {
+		this.world = world;
 		this.block = null;
 		this.info = new HashMap<String, Integer>();
 		this.info.put(Constants.ROW, -1);

@@ -15,11 +15,11 @@ public class World implements Serializable {
 	private static Map map;
 	private EventHandler eh = new EventHandler();
 	private int gameTime;
-	private static HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
-	private static ArrayList<Player> players = new ArrayList<Player>();
-	private static boolean JJVisible;
-	private static boolean gameEnded = false;
-	private static Block JJBlock;
+	private HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
+	private ArrayList<Player> players = new ArrayList<Player>();
+	private boolean JJVisible;
+	private boolean gameEnded = false;
+	private Block JJBlock;
 
 	public ArrayList<GameObjectID> newGame(int[][] cellsType,
 			int[][] wallsType, int[] playersList) {
@@ -29,8 +29,8 @@ public class World implements Serializable {
 		for (int i = 0; i < map.getRows(); ++i)
 			for (int j = 0; j < map.getCols(); ++j) {
 				if (cellsType[i][j] == Constants.START_CELL) {
-					Player p = new Player(playersList[k++], map.at(i, j));
-					World.addPlayer(p);
+					Player p = new Player(playersList[k++], map.at(i, j), this);
+					this.addPlayer(p);
 					p.setBlock(map.at(i, j));
 					map.at(i, j).addPerson(p);
 				}
@@ -55,7 +55,7 @@ public class World implements Serializable {
 		return map.getCols();
 	}
 
-	public static void win(Player player) {
+	public void win(Player player) {
 		for (Player p : players)
 			try {
 				if (p.equals(player))
@@ -68,11 +68,11 @@ public class World implements Serializable {
 		gameEnded = true;
 	}
 
-	public static boolean gameEnded() {
+	public boolean gameEnded() {
 		return gameEnded;
 	}
 
-	public static void addPerson(Person p) {
+	public void addPerson(Person p) {
 		gameObjects.put(p.getId(), p);
 	}
 
@@ -94,7 +94,7 @@ public class World implements Serializable {
 
 	public ArrayList<GameObjectID> getEveryThing() {
 		ArrayList<GameObjectID> ret = new ArrayList<GameObjectID>(
-				World.gameObjects.keySet());
+				this.gameObjects.keySet());
 		return ret;
 	}
 
@@ -125,8 +125,8 @@ public class World implements Serializable {
 		return (float) gameTime / Constants.FPS;
 	}
 
-	public static void addPlayer(Player p) {
-		World.players.add(p);
+	public void addPlayer(Player p) {
+		this.players.add(p);
 	}
 
 	public static Map getMap() {
@@ -163,11 +163,11 @@ public class World implements Serializable {
 
 	}
 
-	public static boolean isJJVisible() {
+	public boolean isJJVisible() {
 		return JJVisible;
 	}
 
-	public static void flipJJ() {
+	public void flipJJ() {
 		JJVisible = !JJVisible;
 		if (JJVisible) {
 			JJBlock.setType(Constants.JJ_CELL);

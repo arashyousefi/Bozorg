@@ -61,7 +61,7 @@ public class CellPanel extends JPanel {
 			g.fillRect(0, 15, 30, 7);
 		}
 		if (block.getCellType(player) == Constants.JJ_CELL
-				&& World.isJJVisible()) {
+				&& block.getWorld().isJJVisible()) {
 			g.setColor(Color.magenta);
 			g.fillRect(0, 23, 30, 7);
 		}

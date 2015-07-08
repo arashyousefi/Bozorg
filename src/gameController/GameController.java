@@ -189,7 +189,7 @@ public class GameController implements KeyListener {
 
 	public void gameUpdate() {
 		engine.next50milis();
-		if (World.gameEnded())
+		if (engine.getWorld().gameEnded())
 			running = false;
 	}
 

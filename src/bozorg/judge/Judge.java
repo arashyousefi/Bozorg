@@ -186,4 +186,8 @@ public class Judge extends JudgeAbstract implements Serializable {
 	public Player IDToPlayer(GameObjectID player) {
 		return world.getPlayer(player);
 	}
+
+	public World getWorld() {
+		return world;
+	}
 }
