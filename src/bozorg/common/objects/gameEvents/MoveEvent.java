@@ -21,7 +21,7 @@ public class MoveEvent extends Event {
 	public void execute() throws BozorgExceptionBase {
 		Position p = player.getBlock().getPos().move(dir);
 		player.getBlock().removePerson(player);
-		player.setBlock(World.getMap().at(p));
+		player.setBlock(player.getWorld().getMap().at(p));
 		player.getBlock().addPerson(player);
 		player.setCanMove(false);
 
@@ -33,7 +33,7 @@ public class MoveEvent extends Event {
 		// }
 
 		if (player.getBlock().getPlayers().size() == 1) {
-			if (World.getMap().at(p).getCellType() == Constants.JJ_CELL
+			if (player.getWorld().getMap().at(p).getCellType() == Constants.JJ_CELL
 					&& player.getWorld().isJJVisible()) {
 				player.getWorld().win(player);
 			}

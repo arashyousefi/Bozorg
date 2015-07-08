@@ -12,7 +12,7 @@ import bozorg.common.objects.gameEvents.MoveEvent;
 import bozorg.common.objects.gameEvents.WardEvent;
 
 public class World implements Serializable {
-	private static Map map;
+	private Map map;
 	private EventHandler eh = new EventHandler();
 	private int gameTime;
 	private HashMap<GameObjectID, Person> gameObjects = new HashMap<GameObjectID, Person>();
@@ -40,18 +40,18 @@ public class World implements Serializable {
 
 		JJVisible = true;
 		try {
-			EventHandler.addEvent(new JJFlipEvent(null));
+			EventHandler.addEvent(new JJFlipEvent(null, this));
 		} catch (BozorgExceptionBase e) {
 			e.printStackTrace();
 		}
 		return this.getEveryThing();
 	}
 
-	public static int getMapHeight() {
+	public int getMapHeight() {
 		return map.getRows();
 	}
 
-	public static int getMapWidth() {
+	public int getMapWidth() {
 		return map.getCols();
 	}
 
@@ -129,7 +129,7 @@ public class World implements Serializable {
 		this.players.add(p);
 	}
 
-	public static Map getMap() {
+	public Map getMap() {
 		return map;
 	}
 
