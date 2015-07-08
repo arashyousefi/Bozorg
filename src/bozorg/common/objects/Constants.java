@@ -1,6 +1,8 @@
 package bozorg.common.objects;
 
-public class Constants {
+import java.io.Serializable;
+
+public class Constants implements Serializable {
 	private Constants() {
 
 	}

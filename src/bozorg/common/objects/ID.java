@@ -1,5 +1,7 @@
 package bozorg.common.objects;
 
-public class ID {
+import java.io.Serializable;
+
+public class ID implements Serializable {
 
 }
