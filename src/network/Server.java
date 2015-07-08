@@ -120,24 +120,30 @@ public class Server {
 			sendToAll(m);
 			controller.handle((BozorgMessage) m.getArgs()[0]);
 		}
+		if (m.getType().equals("toggleState")) {
+			controller.toggleState();
+		}
 	}
 
 	class ClientConnection {
 		ObjectInputStream in;
 		ObjectOutputStream out;
 		Socket socket;
+		boolean connected;
 
 		public ClientConnection(Socket socket) throws IOException {
 			this.socket = socket;
 			out = new ObjectOutputStream(socket.getOutputStream());
 			out.flush();
 			in = new ObjectInputStream(socket.getInputStream());
+			connected = true;
 
 			Thread read = new Thread() {
 				public void run() {
-					while (true) {
+					while (connected) {
 						try {
-							Object obj = in.readObject();
+							connected = socket.isConnected();
+							Object obj = in.readUnshared();
 
 							handle((BozorgMessage) obj);
 
@@ -153,11 +159,15 @@ public class Server {
 		}
 
 		public void write(Object obj) {
-			try {
-				out.writeUnshared(obj);
-				out.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (connected)
+				try {
+					out.writeUnshared(obj);
+					out.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			else {
+				System.out.println("disconnected");
 			}
 		}
 

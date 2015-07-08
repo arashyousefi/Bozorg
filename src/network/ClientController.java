@@ -58,6 +58,9 @@ public class ClientController extends GameController {
 			client.sendToServer(new BozorgMessage("controller",
 					new BozorgMessage("throwfan", ID)));
 
+		if (e.getKeyCode() == KeyEvent.VK_F9)
+			client.sendToServer(new BozorgMessage("toggleState"));
+
 	}
 
 	public void handle(BozorgMessage m) {
@@ -91,7 +94,7 @@ public class ClientController extends GameController {
 			return;
 		}
 		if (m.getType().equals("update")) {
-			
+
 			gameUpdate();
 			gameRender();
 		}

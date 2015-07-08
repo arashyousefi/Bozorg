@@ -12,9 +12,11 @@ import bozorg.judge.Judge;
 
 public class ServerController extends GameController {
 	private Server server;
+	private boolean state;
 
 	public ServerController(Server server) {
 		this.server = server;
+		state = true;
 	}
 
 	public void init(Judge engine, GamePanel panel) {
@@ -35,6 +37,9 @@ public class ServerController extends GameController {
 	}
 
 	public void handle(BozorgMessage m) {
+		if (state == false)
+			return;
+
 		if (m.getType().equals("move")) {
 			try {
 				engine.movePlayer((GameObjectID) m.getArgs()[0],
@@ -73,7 +78,8 @@ public class ServerController extends GameController {
 			public void run() {
 				running = true;
 				while (running) {
-					updateServer();
+					if (state)
+						updateServer();
 					try {
 						Thread.sleep(1000 / Constants.FPS);
 					} catch (InterruptedException e) {
@@ -93,5 +99,9 @@ public class ServerController extends GameController {
 		});
 		gameLoop.start();
 
+	}
+
+	public void toggleState() {
+		state = !state;
 	}
 }

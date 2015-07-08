@@ -85,7 +85,7 @@ public class Client {
 				public void run() {
 					while (true) {
 						try {
-							Object obj = in.readObject();
+							Object obj = in.readUnshared();
 
 							handle((BozorgMessage) obj);
 						} catch (Exception e) {

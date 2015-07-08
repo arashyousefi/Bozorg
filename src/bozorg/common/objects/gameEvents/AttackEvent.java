@@ -25,9 +25,10 @@ public class AttackEvent extends Event {
 		player.setCanAttack(false);
 		for (Person p : player.getWorld().getMap().at(pos).getPeople())
 			p.recieveDamage(player);
-		for (Person p : player.getWorld().getMap().at(pos).getPeople())
+		for (Person p : player.getWorld().getMap().at(pos).getPeople()) {
 			if (p.getInfo(Constants.IS_ALIVE) == Constants.DEAD)
 				deadPeople[--size] = p;
+		}
 		eh.addEvent(new DieEvent(eh, deadPeople));
 	}
 
