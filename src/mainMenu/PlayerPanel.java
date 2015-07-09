@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import network.Client;
 import mapCreator.MapCreator;
+import network.Client;
 
 @SuppressWarnings("serial")
 public class PlayerPanel extends JPanel {

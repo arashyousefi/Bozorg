@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import bozorg.common.GameObjectID;
-import bozorg.common.objects.*;
+import bozorg.common.objects.Block;
+import bozorg.common.objects.Constants;
+import bozorg.common.objects.Player;
+import bozorg.common.objects.Position;
+import bozorg.common.objects.World;
 
 @SuppressWarnings("serial")
 public class AI implements Serializable {

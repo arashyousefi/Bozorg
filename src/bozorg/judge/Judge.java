@@ -7,7 +7,10 @@ import java.util.HashMap;
 import bozorg.common.AI;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
-import bozorg.common.objects.*;
+import bozorg.common.objects.Block;
+import bozorg.common.objects.Person;
+import bozorg.common.objects.Player;
+import bozorg.common.objects.World;
 
 @SuppressWarnings("serial")
 public class Judge extends JudgeAbstract implements Serializable {

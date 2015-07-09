@@ -1,11 +1,12 @@
+import gamePanel.BozorgMenuBar;
+import gamePanel.GamePanel;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 
-import gamePanel.BozorgMenuBar;
-import gamePanel.GamePanel;
 import bozorg.judge.Judge;
 
 public class Test {

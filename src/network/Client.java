@@ -82,6 +82,7 @@ public class Client {
 			in = new ObjectInputStream(socket.getInputStream());
 
 			Thread read = new Thread() {
+				@Override
 				public void run() {
 					while (true) {
 						try {

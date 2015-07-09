@@ -1,8 +1,12 @@
 package tester;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -136,9 +140,9 @@ public class Tester {
 		try {
 			GameObjectID id3 = judge.throwFan(id1);
 			assertNotNull(id3);
-			assertEquals((int) p1.getInfo(Constants.ROW),
+			assertEquals(p1.getInfo(Constants.ROW),
 					(int) judge.getInfo(id3).get(Constants.ROW));
-			assertEquals((int) p1.getInfo(Constants.COL),
+			assertEquals(p1.getInfo(Constants.COL),
 					(int) judge.getInfo(id3).get(Constants.COL));
 			Block b = p1.getBlock();
 			assertTrue(b.hasFan(p1));

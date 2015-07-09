@@ -1,12 +1,12 @@
 package network;
 
+import gameController.GameController;
+
 import java.awt.event.KeyEvent;
 
-import mapCreator.MapCreator;
 import bozorg.common.GameObjectID;
 import bozorg.common.exceptions.BozorgExceptionBase;
 import bozorg.common.objects.Constants;
-import gameController.GameController;
 
 public class ClientController extends GameController {
 	private Client client;

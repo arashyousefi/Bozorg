@@ -1,7 +1,12 @@
 package bozorg.common.objects.gameEvents;
 
 import bozorg.common.exceptions.BozorgExceptionBase;
-import bozorg.common.objects.*;
+import bozorg.common.objects.Constants;
+import bozorg.common.objects.Event;
+import bozorg.common.objects.EventHandler;
+import bozorg.common.objects.Person;
+import bozorg.common.objects.Player;
+import bozorg.common.objects.Position;
 
 @SuppressWarnings("serial")
 public class AttackEvent extends Event {
@@ -23,12 +28,12 @@ public class AttackEvent extends Event {
 		int size = player.getWorld().getMap().at(pos).getPeople().size();
 		Person[] deadPeople = new Person[size];
 		player.setCanAttack(false);
-		for (Person p : player.getWorld().getMap().at(pos).getPeople())
-			p.recieveDamage(player);
 		for (Person p : player.getWorld().getMap().at(pos).getPeople()) {
+			p.recieveDamage(player);
 			if (p.getInfo(Constants.IS_ALIVE) == Constants.DEAD)
 				deadPeople[--size] = p;
 		}
+
 		eh.addEvent(new DieEvent(eh, deadPeople));
 	}
 

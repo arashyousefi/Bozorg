@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import network.Server;
 import mapCreator.MapCreator;
+import network.Server;
 
 @SuppressWarnings("serial")
 public class ServerPanel extends JPanel {

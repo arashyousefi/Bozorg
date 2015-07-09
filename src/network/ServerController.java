@@ -19,6 +19,7 @@ public class ServerController extends GameController {
 		state = true;
 	}
 
+	@Override
 	public void init(Judge engine, GamePanel panel) {
 		this.engine = engine;
 		this.panel = panel;

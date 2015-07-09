@@ -1,5 +1,8 @@
 package network;
 
+import gamePanel.BozorgMenuBar;
+import gamePanel.GamePanel;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,11 +12,9 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
-import gamePanel.BozorgMenuBar;
-import gamePanel.GamePanel;
+import mapCreator.MapCreator;
 import bozorg.common.GameObjectID;
 import bozorg.judge.Judge;
-import mapCreator.MapCreator;
 
 public class Server {
 	private MapCreator mapCreator;
@@ -139,6 +140,7 @@ public class Server {
 			connected = true;
 
 			Thread read = new Thread() {
+				@Override
 				public void run() {
 					while (connected) {
 						try {
