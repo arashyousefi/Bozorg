@@ -1,5 +1,6 @@
 package gameController;
 
+import gamePanel.EndGamePanel;
 import gamePanel.GamePanel;
 
 import java.awt.event.KeyEvent;
@@ -7,6 +8,7 @@ import java.awt.event.KeyListener;
 
 import bozorg.common.GameObjectID;
 import bozorg.common.objects.Constants;
+import bozorg.common.objects.Player;
 import bozorg.judge.Judge;
 
 public class GameController implements KeyListener {
@@ -187,8 +189,15 @@ public class GameController implements KeyListener {
 
 	public void gameUpdate() {
 		engine.next50milis();
-		if (engine.getWorld().gameEnded())
+		if (engine.getWorld().gameEnded()) {
 			running = false;
+			panel.getContentPane().removeAll();
+			int type = 0;
+			for (Player p : engine.getp())
+				if (p.getInfo(Constants.IS_WINNER) == Constants.WINS)
+					type = p.getName();
+			panel.getContentPane().add(new EndGamePanel(type));
+			panel.pack();
+		}
 	}
-
 }
